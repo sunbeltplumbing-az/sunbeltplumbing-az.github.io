@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Price List — Sunbelt Plumbing | Transparent service, No Surprises</title>
+  <meta name="description" content="Transparent plumbing pricing from Sunbelt Plumbing. No after-hours or trip charges. Licensed, bonded, insured. Arizona City &amp; Casa Grande." />
+
+  <link rel="icon" type="image/png" href="/images/favicon.png" />
+  <link rel="apple-touch-icon" href="/images/favicon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/" class="logo">
+          <img src="/images/logo-horizontal.png" alt="Sunbelt Plumbing" class="logo-nav">
+        </a>
+        <button class="nav-toggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/services/">Services</a></li>
+          <li><a href="/pricing/" class="active">Service List</a></li>
+          <li><a href="/gallery/">Gallery</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li>
+            <a href="tel:+14805275385" class="nav-phone">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              (480) 527-5385
+            </a>
+          </li>
+          <li><a href="/quote/" class="btn btn-primary">Get Free Quote</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PRICING HERO -->
+  <section class="pricing-hero">
+    <div class="container">
+      <span class="eyebrow">Our Service List</span>
+      <h1>Everything we do, in one place.</h1>
+      <p>
+        Honest, upfront pricing on our most-requested plumbing services. No after-hours charges, no trip fees, no hidden costs. What we quote is what you pay.
+      </p>
+      <div class="pricing-hero-badges">
+        <span class="pricing-hero-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+          Licensed ROC #344103
+        </span>
+        <span class="pricing-hero-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          24-Hour Service
+        </span>
+        <span class="pricing-hero-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/></svg>
+          Industry-Leading Warranty
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING INTRO -->
+  <section class="pricing-intro">
+    <div class="container">
+      <div class="pricing-intro-grid">
+        <div class="pricing-intro-card">
+          <div class="pricing-intro-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <h4>Free Quotes</h4>
+          <p>Free estimates by phone or in person before any work begins.</p>
+        </div>
+        <div class="pricing-intro-card">
+          <div class="pricing-intro-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 7v5l3 3"/></svg>
+          </div>
+          <h4>No After-Hours Fees</h4>
+          <p>Same honest price, any time of day — 24-hour service, no upcharges.</p>
+        </div>
+        <div class="pricing-intro-card">
+          <div class="pricing-intro-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+          </div>
+          <h4>Warranty Backed</h4>
+          <p>Industry-leading warranty for 24/7 peace of mind on every job.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING CATEGORIES (dynamic from Supabase; hardcoded below is fallback) -->
+  <section class="pricing-categories">
+    <div class="container">
+
+      <div id="pricing-dynamic">
+      <!-- Category 1: Drain & Sewer -->
+      <div class="pricing-category">
+        <div class="pricing-category-header">
+          <div class="pricing-category-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5z"/><path d="M12 22V12M4 7l8 5 8-5"/></svg>
+          </div>
+          <h3>Drain Clearing &amp; Sewer Services</h3>
+        </div>
+        <div class="pricing-items">
+          <div class="pricing-item"><span class="pricing-item-name">Cable Clear Shower</span></div>
+          <div class="pricing-item"><span class="pricing-item-name">Cable Clear Kitchen Clog</span></div>
+          <div class="pricing-item"><span class="pricing-item-name">Cable Clear Bathroom Sink</span></div>
+          <div class="pricing-item"><span class="pricing-item-name">Auger Toilet</span></div>
+          <div class="pricing-item"><span class="pricing-item-name">Cable Clear Main Line Clog</span></div>
+          <div class="pricing-item"><span class="pricing-item-name">Camera Sewer Line</span></div>
+        </div>
+      </div>
+
+      <!-- Category 2: Fixture & Appliance Installation -->
+      <div class="pricing-category">
+        <div class="pricing-category-header">
+          <div class="pricing-category-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h.01M15 9h.01M9 13h.01M15 13h.01M9 17h.01M15 17h.01"/></svg>
+          </div>
+          <h3>Fixture &amp; Appliance Installation</h3>
+        </div>
+        <div class="pricing-items">
+          <div class="pricing-item"><span class="pricing-item-name">Supply &amp; Install Standard Toilet</span></div>
+          <div class="pricing-item"><span class="pricing-item-name">Supply &amp; Install Moen Shower Valve</span></div>
+          <div class="pricing-item"><span class="pricing-item-name">Supply &amp; Install TWO (Tub Waste &amp; Overflow)</span></div>
+          <div class="pricing-item"><span class="pricing-item-name">Supply &amp; Install 60&quot;×30&quot; Fiberglass Tub &amp; Surround</span></div>
+          <div class="pricing-item"><span class="pricing-item-name">Supply &amp; Install Standard 40-gallon Electric Water Heater</span></div>
+          <div class="pricing-item"><span class="pricing-item-name">Supply &amp; Install Ice Maker Box</span></div>
+          <div class="pricing-item"><span class="pricing-item-name">Supply &amp; Install Hot &amp; Cold Washer Valves</span></div>
+          <div class="pricing-item"><span class="pricing-item-name">Supply &amp; Install Washer Box with P-trap Riser</span></div>
+          <div class="pricing-item"><span class="pricing-item-name">Supply &amp; Install Angle Stop Valves <span class="pricing-item-note">(each)</span></span></div>
+          <div class="pricing-item"><span class="pricing-item-name">Supply &amp; Install Garbage Disposal</span></div>
+        </div>
+      </div>
+
+      <!-- Category 3: Ball Valves -->
+      <div class="pricing-category">
+        <div class="pricing-category-header">
+          <div class="pricing-category-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>
+          </div>
+          <h3>Ball Valves (Above Ground)</h3>
+        </div>
+        <div class="pricing-items">
+          <div class="pricing-item"><span class="pricing-item-name">Supply &amp; Install 1/2&quot; Ball Valve</span></div>
+          <div class="pricing-item"><span class="pricing-item-name">Supply &amp; Install 3/4&quot; Ball Valve</span></div>
+          <div class="pricing-item"><span class="pricing-item-name">Supply &amp; Install 1&quot; Ball Valve</span></div>
+          <div class="pricing-item"><span class="pricing-item-name">Supply &amp; Install 1.25&quot; Ball Valve</span></div>
+          <div class="pricing-item"><span class="pricing-item-name">Supply &amp; Install 1.5&quot; Ball Valve</span></div>
+          <div class="pricing-item"><span class="pricing-item-name">Supply &amp; Install 2&quot; Ball Valve</span></div>
+        </div>
+      </div>
+
+      <!-- Category 4: Fan Coil Systems -->
+      <div class="pricing-category">
+        <div class="pricing-category-header">
+          <div class="pricing-category-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          </div>
+          <h3>HBC Fan Coil Systems</h3>
+        </div>
+        <div class="pricing-items">
+          <div class="pricing-item"><span class="pricing-item-name">Supply &amp; Install 4 HBC Fan Coil with Flush Valves</span></div>
+          <div class="pricing-item"><span class="pricing-item-name">Supply &amp; Install 6 HBC Fan Coil with Flush Valves</span></div>
+          <div class="pricing-item"><span class="pricing-item-name">Supply &amp; Install 8 HBC Fan Coil with Flush Valves</span></div>
+          <div class="pricing-item"><span class="pricing-item-name">Supply &amp; Install 10 HBC Fan Coil with Flush Valves</span></div>
+          <div class="pricing-item"><span class="pricing-item-name">Supply &amp; Install Fan Coil Digital Thermostat</span></div>
+          <div class="pricing-item"><span class="pricing-item-name">Supply &amp; Install Flush Valves &amp; Clean Coils</span></div>
+          <div class="pricing-item"><span class="pricing-item-name">Flush Fan Coil &amp; Clean Coils</span></div>
+        </div>
+      </div>
+      </div><!-- /#pricing-dynamic -->
+
+    </div>
+  </section>
+
+  <!-- DISCLAIMER -->
+  <section class="pricing-disclaimer">
+    <div class="container">
+      <div class="pricing-disclaimer-box">
+        <h4>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          A note on pricing
+        </h4>
+        <p>
+          Prices listed above reflect our standard 2026 pricing for the most common work. Every job is unique — the final price depends on site conditions, materials needed, and scope. For anything not listed, or a project with multiple items, <a href="/quote/">request a free quote</a> and we'll give you an honest, itemized estimate before work begins.
+        </p>
+        <p>
+          All prices include professional installation, cleanup, and are backed by our industry-leading warranty. Licensed, bonded, and insured under Arizona ROC #344103.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="cta-band">
+    <div class="container">
+      <div class="cta-band-grid">
+        <div>
+          <h2>Don't see what you need?</h2>
+          <p>Call us or request a free quote — we'll give you a clear, itemized price before starting.</p>
+        </div>
+        <div class="cta-band-actions">
+          <a href="/quote/" class="btn btn-quote btn-large">Get Free Quote</a>
+          <a href="tel:+14805275385" class="btn btn-ghost btn-large">Call Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="logo">
+            <img src="/images/logo-light.png" alt="Sunbelt Plumbing" class="logo-footer">
+          </a>
+          <p>Family-operated, licensed, bonded, and insured plumbing services across Arizona. Fast, fair, and built on trust.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/services/">Services</a></li>
+            <li><a href="/pricing/">Service List</a></li>
+            <li><a href="/gallery/">Gallery</a></li>
+            <li><a href="/quote/">Get a Quote</a></li>
+            <li><a href="/contact/">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="/services/">Sewer Camera Locating</a></li>
+            <li><a href="/services/">Drain Clearing</a></li>
+            <li><a href="/services/">Water Heaters</a></li>
+            <li><a href="/services/">Water Softeners</a></li>
+            <li><a href="/services/">Diagnosis &amp; Repair</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get In Touch</h4>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <a href="tel:+14805275385">(480) 527-5385</a>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="mailto:shan@sunbeltplumbingaz.com">shan@sunbeltplumbingaz.com</a>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Arizona City &amp; Casa Grande · Phoenix to Tucson</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 Sunbelt Plumbing. All rights reserved. · ROC #344103</div>
+        <div class="footer-social">
+          <a href="https://fb.com/SunbeltPlumbingLLC" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/script.js"></script>
+  <script src="/js/supabase-client.js"></script>
+  <script src="/js/content-loader.js"></script>
+
+  <div class="fb-chat-widget" id="fbChatWidget">
+    <a href="https://m.me/SunbeltPlumbingLLC" target="_blank" rel="noopener" class="fb-chat-button" aria-label="Chat with Sunbelt Plumbing on Facebook Messenger" title="Chat with us on Facebook Messenger">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C6.477 2 2 6.145 2 11.259c0 2.913 1.454 5.512 3.726 7.21V22l3.405-1.869c.909.252 1.871.388 2.869.388 5.523 0 10-4.145 10-9.26C22 6.145 17.523 2 12 2zm.997 12.467l-2.546-2.715-4.97 2.715 5.467-5.804 2.61 2.715 4.907-2.715-5.468 5.804z"/>
+      </svg>
+    </a>
+  </div>
+
+</body>
+</html>
