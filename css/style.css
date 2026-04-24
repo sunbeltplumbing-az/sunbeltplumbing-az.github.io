@@ -1665,3 +1665,43 @@ section { padding: var(--space-3xl) 0; }
   margin-bottom: 0;
 }
 
+/* ============================================
+   V3.1 - HERO BACKGROUNDS (Apr 24, 2026)
+   Background images on page-header + homepage hero
+   ============================================ */
+
+/* Photo background for .page-header (Services, Gallery, Contact) */
+.page-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--page-bg, url('/images/bg_pipes.jpg')) center/cover no-repeat;
+  opacity: 0.18;
+  z-index: 0;
+}
+
+/* Quote page: keep clean, no photo background */
+.page-header.page-header-clean::before {
+  display: none;
+}
+
+/* Homepage hero: add photo background */
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/images/bg_pipes.jpg') center/cover no-repeat;
+  opacity: 0.15;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero > .container {
+  position: relative;
+  z-index: 1;
+}
