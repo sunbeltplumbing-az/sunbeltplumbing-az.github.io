@@ -18,7 +18,7 @@ window.SUPABASE_CONFIG = {
   // TODO: Replace with your ANON (public) key from Supabase → Settings → API
   // It starts with 'eyJ...'. The anon key is safe for browser use — DO NOT
   // use the service_role key here, ever.
-  anonKey: 'REPLACE_WITH_YOUR_ANON_KEY'
+  anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh0cnlkc3hqcnRvYnh1aHhocmZ5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5NzgyMTMsImV4cCI6MjA5MjU1NDIxM30.ZW53A3LVM_jyadtEuIXcB6GaKvR0Ufwzc60wc6biOPk'
 };
 
 // Load Supabase JS from CDN and initialize client
