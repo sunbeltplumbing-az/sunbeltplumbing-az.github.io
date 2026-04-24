@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Activity Log — Sunbelt Plumbing Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="/images/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/admin.css" />
+</head>
+<body class="admin-body">
+
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar-logo">
+        <img src="/images/logo-light.png" alt="Sunbelt Plumbing" />
+        <div class="admin-sidebar-logo-text">Admin Panel</div>
+      </div>
+      <ul class="admin-nav">
+        <li><a href="/admin/dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard</a></li>
+        <li><a href="/admin/services.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>Services</a></li>
+        <li><a href="/admin/pricing.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Pricing</a></li>
+        <li><a href="/admin/gallery.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Gallery</a></li>
+        <li><a href="/admin/testimonials.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Testimonials</a></li>
+        <li><a href="/admin/service-areas.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Service Areas</a></li>
+        <li><a href="/admin/settings.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6M12 17v6M4.2 4.2l4.3 4.3M15.5 15.5l4.3 4.3M1 12h6M17 12h6M4.2 19.8l4.3-4.3M15.5 8.5l4.3-4.3"/></svg>Business Info</a></li>
+        <li><a href="/admin/audit-log.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>Activity Log</a></li>
+        <li><a href="/" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>View Live Site</a></li>
+      </ul>
+      <div class="admin-sidebar-footer">
+        <div class="admin-user-info" id="admin-user-email">loading...</div>
+        <button class="admin-logout-btn" id="admin-logout-btn">Sign out</button>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <div class="admin-page-header">
+        <div>
+          <h1>Activity Log</h1>
+          <p class="subtitle">History of every change made to your website content.</p>
+        </div>
+      </div>
+
+      <div class="admin-card">
+        <div class="admin-card-header">
+          <h2>Recent activity</h2>
+          <span class="text-muted" style="font-size: 0.875rem;">Last 200 entries</span>
+        </div>
+        <div id="list-container">
+          <div class="admin-spinner-center"><span class="admin-spinner"></span> Loading...</div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/supabase-client.js"></script>
+  <script src="/admin/js/admin.js"></script>
+  <script>
+  (async function() {
+    const session = await window.Admin.requireAuth();
+    if (!session) return;
+    const sb = await window.supabaseReady();
+
+    const container = document.getElementById('list-container');
+
+    const TABLE_LABELS = {
+      'services': 'Service',
+      'prices': 'Price',
+      'gallery': 'Gallery photo',
+      'testimonials': 'Review',
+      'site_settings': 'Business info',
+      'service_areas': 'Service area'
+    };
+
+    const ACTION_LABELS = {
+      'create': { text: 'added', color: '#16a34a', icon: '+' },
+      'update': { text: 'edited', color: '#0f4c81', icon: '✎' },
+      'soft_delete': { text: 'removed', color: '#dc2626', icon: '×' },
+      'delete': { text: 'permanently deleted', color: '#dc2626', icon: '×' },
+      'activate': { text: 'activated', color: '#16a34a', icon: '✓' },
+      'deactivate': { text: 'hid', color: '#64748b', icon: '—' }
+    };
+
+    function formatTime(iso) {
+      const d = new Date(iso);
+      const now = new Date();
+      const diffMs = now - d;
+      const diffMin = Math.floor(diffMs / 60000);
+      const diffHr = Math.floor(diffMin / 60);
+      const diffDay = Math.floor(diffHr / 24);
+      if (diffMin < 1) return 'just now';
+      if (diffMin < 60) return `${diffMin}m ago`;
+      if (diffHr < 24) return `${diffHr}h ago`;
+      if (diffDay < 7) return `${diffDay}d ago`;
+      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    }
+
+    function describeRecord(table, data) {
+      if (!data) return '';
+      if (table === 'services') return data.title || '(untitled)';
+      if (table === 'prices') return `${data.item_name || '(unnamed)'} — $${parseFloat(data.price || 0).toFixed(2)}`;
+      if (table === 'gallery') return data.caption || 'Photo';
+      if (table === 'testimonials') return `Review from ${data.customer_name || 'customer'}`;
+      if (table === 'service_areas') return data.city_name || '(city)';
+      if (table === 'site_settings') return 'Business info';
+      return '';
+    }
+
+    function describeChange(entry) {
+      // If it's a price update, highlight old vs new price
+      if (entry.table_name === 'prices' && entry.action === 'update' && entry.old_data && entry.new_data) {
+        const oldPrice = parseFloat(entry.old_data.price || 0).toFixed(2);
+        const newPrice = parseFloat(entry.new_data.price || 0).toFixed(2);
+        if (oldPrice !== newPrice) {
+          return `$${oldPrice} → $${newPrice}`;
+        }
+      }
+      return '';
+    }
+
+    async function loadList() {
+      const { data, error } = await sb.from('audit_log').select('*').order('created_at', { ascending: false }).limit(200);
+      if (error) {
+        container.innerHTML = `<div class="alert alert-error">Could not load: ${window.Admin.escapeHtml(error.message)}</div>`;
+        return;
+      }
+      if (data.length === 0) {
+        container.innerHTML = `<div class="empty-state"><h3>No activity yet</h3><p>Changes will appear here as you edit content.</p></div>`;
+        return;
+      }
+
+      container.innerHTML = `<div style="display: flex; flex-direction: column; gap: 0;">
+        ${data.map(entry => {
+          const action = ACTION_LABELS[entry.action] || { text: entry.action, color: '#64748b', icon: '•' };
+          const label = TABLE_LABELS[entry.table_name] || entry.table_name;
+          const desc = describeRecord(entry.table_name, entry.new_data || entry.old_data);
+          const priceChange = describeChange(entry);
+          return `
+            <div style="display: flex; align-items: center; gap: 1rem; padding: 0.875rem; border-bottom: 1px solid var(--admin-border);">
+              <div style="width: 32px; height: 32px; border-radius: 50%; background: ${action.color}; color: #fff; display: grid; place-items: center; font-weight: 700; flex-shrink: 0;">${action.icon}</div>
+              <div style="flex: 1; min-width: 0;">
+                <div style="color: var(--admin-text); font-size: 0.9375rem;">
+                  <strong>${window.Admin.escapeHtml(entry.user_email || 'Unknown')}</strong>
+                  ${window.Admin.escapeHtml(action.text)}
+                  ${label.toLowerCase()}
+                  ${desc ? `<span class="text-muted">&mdash;</span> <span>${window.Admin.escapeHtml(desc)}</span>` : ''}
+                  ${priceChange ? `<span style="color: #dc2626; font-weight: 600; margin-left: 0.5rem;">${window.Admin.escapeHtml(priceChange)}</span>` : ''}
+                </div>
+                <div class="text-muted" style="font-size: 0.8125rem; margin-top: 0.25rem;">${formatTime(entry.created_at)} &middot; ${new Date(entry.created_at).toLocaleString()}</div>
+              </div>
+            </div>`;
+        }).join('')}
+      </div>`;
+    }
+
+    loadList();
+  })();
+  </script>
+</body>
+</html>

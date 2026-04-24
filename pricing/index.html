@@ -66,6 +66,9 @@
           Industry-Leading Warranty
         </span>
       </div>
+      <div class="pricing-last-updated-wrapper" style="margin-top: 1.5rem; font-size: 0.875rem; color: rgba(255,255,255,0.7);">
+        Prices last updated: <span id="pricing-last-updated" style="color: #fff; font-weight: 600;">—</span>
+      </div>
     </div>
   </section>
 
@@ -98,10 +101,11 @@
     </div>
   </section>
 
-  <!-- PRICING CATEGORIES -->
+  <!-- PRICING CATEGORIES (dynamic from Supabase; hardcoded below is fallback) -->
   <section class="pricing-categories">
     <div class="container">
 
+      <div id="pricing-dynamic">
       <!-- Category 1: Drain & Sewer -->
       <div class="pricing-category">
         <div class="pricing-category-header">
@@ -178,6 +182,7 @@
           <div class="pricing-item"><span class="pricing-item-name">Flush Fan Coil &amp; Clean Coils</span><span class="pricing-item-price">$189.00</span></div>
         </div>
       </div>
+      </div><!-- /#pricing-dynamic -->
 
     </div>
   </section>

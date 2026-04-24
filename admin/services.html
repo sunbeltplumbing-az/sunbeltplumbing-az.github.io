@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — Sunbelt Plumbing Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="/images/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/admin.css" />
+</head>
+<body class="admin-body">
+
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar-logo">
+        <img src="/images/logo-light.png" alt="Sunbelt Plumbing" />
+        <div class="admin-sidebar-logo-text">Admin Panel</div>
+      </div>
+      <ul class="admin-nav">
+        <li><a href="/admin/dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard</a></li>
+        <li><a href="/admin/services.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>Services</a></li>
+        <li><a href="/admin/pricing.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Pricing</a></li>
+        <li><a href="/admin/gallery.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Gallery</a></li>
+        <li><a href="/admin/testimonials.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Testimonials</a></li>
+        <li><a href="/admin/service-areas.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Service Areas</a></li>
+        <li><a href="/admin/settings.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6M12 17v6M4.2 4.2l4.3 4.3M15.5 15.5l4.3 4.3M1 12h6M17 12h6M4.2 19.8l4.3-4.3M15.5 8.5l4.3-4.3"/></svg>Business Info</a></li>
+        <li><a href="/admin/audit-log.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>Activity Log</a></li>
+        <li><a href="/" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>View Live Site</a></li>
+      </ul>
+      <div class="admin-sidebar-footer">
+        <div class="admin-user-info" id="admin-user-email">loading...</div>
+        <button class="admin-logout-btn" id="admin-logout-btn">Sign out</button>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <div class="admin-page-header">
+        <div>
+          <h1>Services</h1>
+          <p class="subtitle">Services shown on your homepage and Services page.</p>
+        </div>
+        <button class="btn-admin btn-admin-primary" id="add-btn">+ Add new service</button>
+      </div>
+
+      <div class="alert alert-info" style="margin-bottom: 1.5rem;">
+        <strong>Tip:</strong> The order below matches how services appear on your website. Use the ↑ ↓ buttons to reorder. Deactivated services are hidden from visitors but kept in the system.
+      </div>
+
+      <div id="form-card" class="admin-card hidden">
+        <div class="admin-card-header">
+          <h2 id="form-title">Add new service</h2>
+        </div>
+        <div class="form-group">
+          <label for="title">Service name *</label>
+          <input type="text" id="title" placeholder="e.g., Water Heaters" maxlength="80" />
+        </div>
+        <div class="form-group">
+          <label for="description">Description *</label>
+          <textarea id="description" placeholder="What this service includes, in 1-2 sentences" rows="3" maxlength="300"></textarea>
+          <div class="hint">Keep it clear and benefit-focused. Max ~300 characters.</div>
+        </div>
+        <div class="form-group">
+          <label for="image-url">Image URL (optional)</label>
+          <input type="text" id="image-url" placeholder="/images/water_heater.jpg or full URL" />
+          <div class="hint">Leave blank for no image. Use relative paths like /images/water_heater.jpg for uploaded images, or full Unsplash/other URLs.</div>
+        </div>
+        <div class="form-group">
+          <label>
+            <input type="checkbox" id="featured-on-home" checked />
+            Show on homepage services section
+          </label>
+        </div>
+        <div class="flex gap-sm">
+          <button class="btn-admin btn-admin-primary" id="save-btn"><span id="save-label">Save service</span></button>
+          <button class="btn-admin btn-admin-secondary" id="cancel-btn">Cancel</button>
+        </div>
+      </div>
+
+      <div class="admin-card">
+        <div class="admin-card-header">
+          <h2>Current services</h2>
+          <span class="text-muted" id="count" style="font-size: 0.875rem;"></span>
+        </div>
+        <div id="list-container">
+          <div class="admin-spinner-center"><span class="admin-spinner"></span> Loading...</div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/supabase-client.js"></script>
+  <script src="/admin/js/admin.js"></script>
+  <script>
+  (async function() {
+    const session = await window.Admin.requireAuth();
+    if (!session) return;
+    const sb = await window.supabaseReady();
+
+    const addBtn = document.getElementById('add-btn');
+    const formCard = document.getElementById('form-card');
+    const formTitle = document.getElementById('form-title');
+    const saveBtn = document.getElementById('save-btn');
+    const saveLabel = document.getElementById('save-label');
+    const cancelBtn = document.getElementById('cancel-btn');
+    const listContainer = document.getElementById('list-container');
+    const count = document.getElementById('count');
+
+    const titleInput = document.getElementById('title');
+    const descInput = document.getElementById('description');
+    const imageInput = document.getElementById('image-url');
+    const featuredInput = document.getElementById('featured-on-home');
+
+    let editingId = null;
+    let editingOriginal = null;
+
+    function slugify(text) {
+      return (text || '').toLowerCase().trim()
+        .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').substring(0, 60);
+    }
+
+    function openForm(item = null) {
+      editingId = item?.id || null;
+      editingOriginal = item ? { ...item } : null;
+      formTitle.textContent = item ? 'Edit service' : 'Add new service';
+      titleInput.value = item?.title || '';
+      descInput.value = item?.description || '';
+      imageInput.value = item?.image_url || '';
+      featuredInput.checked = item ? item.is_featured_on_home : true;
+      formCard.classList.remove('hidden');
+      formCard.scrollIntoView({ behavior: 'smooth' });
+      titleInput.focus();
+    }
+
+    function closeForm() {
+      editingId = null;
+      editingOriginal = null;
+      formCard.classList.add('hidden');
+    }
+
+    addBtn.addEventListener('click', () => openForm());
+    cancelBtn.addEventListener('click', closeForm);
+
+    saveBtn.addEventListener('click', async () => {
+      const title = titleInput.value.trim();
+      const description = descInput.value.trim();
+      if (!title || !description) {
+        window.Admin.toast('Service name and description are required.', 'error');
+        return;
+      }
+
+      const ok = await window.Admin.confirm(
+        editingId ? `Save changes to "${title}"?` : `Add new service "${title}"?`,
+        'Confirm change'
+      );
+      if (!ok) return;
+
+      saveBtn.disabled = true;
+      saveLabel.innerHTML = '<span class="admin-spinner"></span> Saving...';
+
+      try {
+        if (editingId) {
+          const payload = {
+            title,
+            description,
+            image_url: imageInput.value.trim() || null,
+            is_featured_on_home: featuredInput.checked
+          };
+          const { error } = await sb.from('services').update(payload).eq('id', editingId);
+          if (error) throw error;
+          await window.Admin.logAction('services', editingId, 'update', editingOriginal, { ...editingOriginal, ...payload });
+          window.Admin.toast('Service updated.', 'success');
+        } else {
+          const { data: maxData } = await sb.from('services').select('display_order').order('display_order', { ascending: false }).limit(1);
+          const nextOrder = (maxData?.[0]?.display_order ?? 0) + 10;
+          const payload = {
+            slug: slugify(title) + '-' + Date.now().toString(36),
+            title, description,
+            image_url: imageInput.value.trim() || null,
+            is_featured_on_home: featuredInput.checked,
+            display_order: nextOrder,
+            is_active: true
+          };
+          const { data, error } = await sb.from('services').insert(payload).select().single();
+          if (error) throw error;
+          await window.Admin.logAction('services', data.id, 'create', null, data);
+          window.Admin.toast('Service added.', 'success');
+        }
+        closeForm();
+        loadList();
+      } catch (err) {
+        window.Admin.toast('Save failed: ' + err.message, 'error');
+      } finally {
+        saveBtn.disabled = false;
+        saveLabel.textContent = 'Save service';
+      }
+    });
+
+    async function loadList() {
+      listContainer.innerHTML = '<div class="admin-spinner-center"><span class="admin-spinner"></span> Loading...</div>';
+      const { data, error } = await sb.from('services').select('*').order('display_order', { ascending: true });
+      if (error) {
+        listContainer.innerHTML = `<div class="alert alert-error">Could not load: ${window.Admin.escapeHtml(error.message)}</div>`;
+        return;
+      }
+      const activeCount = data.filter(s => s.is_active).length;
+      count.textContent = `${activeCount} active · ${data.length} total`;
+
+      if (data.length === 0) {
+        listContainer.innerHTML = `<div class="empty-state"><h3>No services yet</h3><p>Click "Add new service" above.</p></div>`;
+        return;
+      }
+
+      listContainer.innerHTML = `<table class="admin-table">
+        <thead><tr><th>Order</th><th>Service</th><th>Status</th><th>Homepage</th><th class="text-right">Actions</th></tr></thead>
+        <tbody>${data.map((s, idx) => `
+          <tr data-id="${s.id}" style="${!s.is_active ? 'opacity: 0.5;' : ''}">
+            <td><strong>#${s.display_order}</strong></td>
+            <td>
+              <strong>${window.Admin.escapeHtml(s.title)}</strong>
+              <div class="text-muted" style="font-size: 0.8125rem; margin-top: 0.25rem;">${window.Admin.escapeHtml((s.description || '').substring(0, 80))}${(s.description || '').length > 80 ? '…' : ''}</div>
+            </td>
+            <td><span class="badge badge-${s.is_active ? 'active' : 'inactive'}">${s.is_active ? 'Active' : 'Hidden'}</span></td>
+            <td>${s.is_featured_on_home ? '✓ Yes' : '— No'}</td>
+            <td class="admin-table-actions">
+              <button class="btn-admin btn-admin-secondary btn-admin-small" data-action="up" data-id="${s.id}" ${idx === 0 ? 'disabled' : ''}>↑</button>
+              <button class="btn-admin btn-admin-secondary btn-admin-small" data-action="down" data-id="${s.id}" ${idx === data.length - 1 ? 'disabled' : ''}>↓</button>
+              <button class="btn-admin btn-admin-secondary btn-admin-small" data-action="edit" data-id="${s.id}">Edit</button>
+              <button class="btn-admin btn-admin-secondary btn-admin-small" data-action="toggle" data-id="${s.id}">${s.is_active ? 'Hide' : 'Show'}</button>
+              <button class="btn-admin btn-admin-danger btn-admin-small" data-action="delete" data-id="${s.id}">Delete</button>
+            </td>
+          </tr>`).join('')}
+        </tbody>
+      </table>`;
+
+      listContainer.querySelectorAll('[data-action]').forEach(btn => {
+        btn.addEventListener('click', () => handleAction(btn.dataset.action, btn.dataset.id, data));
+      });
+    }
+
+    async function handleAction(action, id, allItems) {
+      const item = allItems.find(i => i.id === id);
+      if (!item) return;
+
+      if (action === 'edit') {
+        openForm(item);
+      } else if (action === 'toggle') {
+        const newState = !item.is_active;
+        const ok = await window.Admin.confirm(`${newState ? 'Show' : 'Hide'} "${item.title}" ${newState ? 'on' : 'from'} the public site?`, 'Confirm visibility change');
+        if (!ok) return;
+        const { error } = await sb.from('services').update({ is_active: newState }).eq('id', id);
+        if (error) { window.Admin.toast('Failed: ' + error.message, 'error'); return; }
+        await window.Admin.logAction('services', id, newState ? 'activate' : 'deactivate', item, { ...item, is_active: newState });
+        window.Admin.toast(`Service ${newState ? 'shown' : 'hidden'}.`, 'success');
+        loadList();
+      } else if (action === 'delete') {
+        const ok = await window.Admin.confirm(`Permanently delete "${item.title}"? This cannot be undone easily.`, 'Delete service');
+        if (!ok) return;
+        const { error } = await sb.from('services').delete().eq('id', id);
+        if (error) { window.Admin.toast('Delete failed: ' + error.message, 'error'); return; }
+        await window.Admin.logAction('services', id, 'delete', item, null);
+        window.Admin.toast('Service deleted.', 'success');
+        loadList();
+      } else if (action === 'up' || action === 'down') {
+        const idx = allItems.findIndex(i => i.id === id);
+        const swapIdx = action === 'up' ? idx - 1 : idx + 1;
+        if (swapIdx < 0 || swapIdx >= allItems.length) return;
+        const other = allItems[swapIdx];
+        const a = sb.from('services').update({ display_order: other.display_order }).eq('id', item.id);
+        const b = sb.from('services').update({ display_order: item.display_order }).eq('id', other.id);
+        const [r1, r2] = await Promise.all([a, b]);
+        if (r1.error || r2.error) { window.Admin.toast('Reorder failed.', 'error'); return; }
+        loadList();
+      }
+    }
+
+    loadList();
+  })();
+  </script>
+</body>
+</html>

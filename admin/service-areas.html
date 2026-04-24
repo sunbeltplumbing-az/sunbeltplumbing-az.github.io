@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Service Areas — Sunbelt Plumbing Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="/images/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/admin.css" />
+</head>
+<body class="admin-body">
+
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar-logo">
+        <img src="/images/logo-light.png" alt="Sunbelt Plumbing" />
+        <div class="admin-sidebar-logo-text">Admin Panel</div>
+      </div>
+      <ul class="admin-nav">
+        <li><a href="/admin/dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard</a></li>
+        <li><a href="/admin/services.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>Services</a></li>
+        <li><a href="/admin/pricing.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Pricing</a></li>
+        <li><a href="/admin/gallery.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Gallery</a></li>
+        <li><a href="/admin/testimonials.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Testimonials</a></li>
+        <li><a href="/admin/service-areas.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Service Areas</a></li>
+        <li><a href="/admin/settings.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6M12 17v6M4.2 4.2l4.3 4.3M15.5 15.5l4.3 4.3M1 12h6M17 12h6M4.2 19.8l4.3-4.3M15.5 8.5l4.3-4.3"/></svg>Business Info</a></li>
+        <li><a href="/admin/audit-log.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>Activity Log</a></li>
+        <li><a href="/" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>View Live Site</a></li>
+      </ul>
+      <div class="admin-sidebar-footer">
+        <div class="admin-user-info" id="admin-user-email">loading...</div>
+        <button class="admin-logout-btn" id="admin-logout-btn">Sign out</button>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <div class="admin-page-header">
+        <div>
+          <h1>Service Areas</h1>
+          <p class="subtitle">Cities shown in the service areas section of your website.</p>
+        </div>
+      </div>
+
+      <div class="admin-card">
+        <div class="admin-card-header"><h2>Add a city</h2></div>
+        <div style="display: flex; gap: 0.5rem; align-items: flex-end;">
+          <div class="form-group" style="flex: 1; margin-bottom: 0;">
+            <label for="city-input">City name</label>
+            <input type="text" id="city-input" placeholder="e.g., Scottsdale" maxlength="60" />
+          </div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label style="display: flex; align-items: center; gap: 0.5rem;">
+              <input type="checkbox" id="is-primary-input" />
+              <span>Primary area (gold highlight)</span>
+            </label>
+          </div>
+          <button class="btn-admin btn-admin-primary" id="add-btn">+ Add</button>
+        </div>
+        <div class="hint" style="margin-top: 0.5rem;">"Primary area" cities (like Arizona City and Casa Grande) get a gold highlight on the site.</div>
+      </div>
+
+      <div class="admin-card">
+        <div class="admin-card-header">
+          <h2>Current cities</h2>
+          <span class="text-muted" id="count" style="font-size: 0.875rem;"></span>
+        </div>
+        <div id="list-container">
+          <div class="admin-spinner-center"><span class="admin-spinner"></span> Loading...</div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/supabase-client.js"></script>
+  <script src="/admin/js/admin.js"></script>
+  <script>
+  (async function() {
+    const session = await window.Admin.requireAuth();
+    if (!session) return;
+    const sb = await window.supabaseReady();
+
+    const addBtn = document.getElementById('add-btn');
+    const cityInput = document.getElementById('city-input');
+    const isPrimaryInput = document.getElementById('is-primary-input');
+    const listContainer = document.getElementById('list-container');
+    const count = document.getElementById('count');
+
+    addBtn.addEventListener('click', addCity);
+    cityInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') addCity(); });
+
+    async function addCity() {
+      const name = cityInput.value.trim();
+      if (!name) { window.Admin.toast('Enter a city name.', 'error'); return; }
+
+      const ok = await window.Admin.confirm(`Add "${name}" to service areas?`, 'Confirm');
+      if (!ok) return;
+
+      addBtn.disabled = true;
+      try {
+        const { data: maxData } = await sb.from('service_areas').select('display_order').order('display_order', { ascending: false }).limit(1);
+        const nextOrder = (maxData?.[0]?.display_order ?? 0) + 10;
+        const payload = {
+          city_name: name,
+          is_primary: isPrimaryInput.checked,
+          display_order: nextOrder,
+          is_active: true
+        };
+        const { data, error } = await sb.from('service_areas').insert(payload).select().single();
+        if (error) throw error;
+        await window.Admin.logAction('service_areas', data.id, 'create', null, data);
+        window.Admin.toast('City added.', 'success');
+        cityInput.value = '';
+        isPrimaryInput.checked = false;
+        loadList();
+      } catch (err) {
+        window.Admin.toast('Failed: ' + err.message, 'error');
+      } finally {
+        addBtn.disabled = false;
+      }
+    }
+
+    async function loadList() {
+      listContainer.innerHTML = '<div class="admin-spinner-center"><span class="admin-spinner"></span> Loading...</div>';
+      const { data, error } = await sb.from('service_areas').select('*').eq('is_active', true).order('display_order', { ascending: true });
+      if (error) {
+        listContainer.innerHTML = `<div class="alert alert-error">Could not load: ${window.Admin.escapeHtml(error.message)}</div>`;
+        return;
+      }
+      count.textContent = `${data.length} cit${data.length === 1 ? 'y' : 'ies'}`;
+      if (data.length === 0) {
+        listContainer.innerHTML = `<div class="empty-state"><h3>No service areas</h3><p>Add the cities you serve above.</p></div>`;
+        return;
+      }
+
+      listContainer.innerHTML = `<table class="admin-table">
+        <thead><tr><th>Order</th><th>City</th><th>Type</th><th class="text-right">Actions</th></tr></thead>
+        <tbody>${data.map((a, idx) => `
+          <tr data-id="${a.id}">
+            <td>#${a.display_order}</td>
+            <td><strong>${window.Admin.escapeHtml(a.city_name)}</strong></td>
+            <td>${a.is_primary ? '<span class="badge" style="background:#fef3c7; color:#92400e;">Primary (gold)</span>' : '<span class="badge" style="background:#e0e7ff; color:#3730a3;">Standard</span>'}</td>
+            <td class="admin-table-actions">
+              <button class="btn-admin btn-admin-secondary btn-admin-small" data-action="up" data-id="${a.id}" ${idx === 0 ? 'disabled' : ''}>↑</button>
+              <button class="btn-admin btn-admin-secondary btn-admin-small" data-action="down" data-id="${a.id}" ${idx === data.length - 1 ? 'disabled' : ''}>↓</button>
+              <button class="btn-admin btn-admin-secondary btn-admin-small" data-action="toggle-primary" data-id="${a.id}">${a.is_primary ? 'Make standard' : 'Make primary'}</button>
+              <button class="btn-admin btn-admin-danger btn-admin-small" data-action="delete" data-id="${a.id}">Remove</button>
+            </td>
+          </tr>`).join('')}
+        </tbody>
+      </table>`;
+
+      listContainer.querySelectorAll('[data-action]').forEach(btn => {
+        btn.addEventListener('click', () => handleAction(btn.dataset.action, btn.dataset.id, data));
+      });
+    }
+
+    async function handleAction(action, id, allItems) {
+      const item = allItems.find(i => i.id === id);
+      if (!item) return;
+
+      if (action === 'delete') {
+        const ok = await window.Admin.confirm(`Remove "${item.city_name}" from service areas?`, 'Confirm remove');
+        if (!ok) return;
+        const { error } = await sb.from('service_areas').update({ is_active: false }).eq('id', id);
+        if (error) { window.Admin.toast('Failed: ' + error.message, 'error'); return; }
+        await window.Admin.logAction('service_areas', id, 'soft_delete', item, null);
+        window.Admin.toast('City removed.', 'success');
+        loadList();
+      } else if (action === 'toggle-primary') {
+        const newState = !item.is_primary;
+        const { error } = await sb.from('service_areas').update({ is_primary: newState }).eq('id', id);
+        if (error) { window.Admin.toast('Failed: ' + error.message, 'error'); return; }
+        await window.Admin.logAction('service_areas', id, 'update', item, { ...item, is_primary: newState });
+        window.Admin.toast('Updated.', 'success');
+        loadList();
+      } else if (action === 'up' || action === 'down') {
+        const idx = allItems.findIndex(i => i.id === id);
+        const swapIdx = action === 'up' ? idx - 1 : idx + 1;
+        if (swapIdx < 0 || swapIdx >= allItems.length) return;
+        const other = allItems[swapIdx];
+        const a = sb.from('service_areas').update({ display_order: other.display_order }).eq('id', item.id);
+        const b = sb.from('service_areas').update({ display_order: item.display_order }).eq('id', other.id);
+        const [r1, r2] = await Promise.all([a, b]);
+        if (r1.error || r2.error) { window.Admin.toast('Reorder failed.', 'error'); return; }
+        loadList();
+      }
+    }
+
+    loadList();
+  })();
+  </script>
+</body>
+</html>
