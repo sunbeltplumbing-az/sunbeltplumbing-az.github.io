@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Photo Gallery — Our Recent Plumbing Work | Sunbelt Plumbing</title>
+  <meta name="description" content="See examples of recent plumbing repairs, installations, and remodels by Sunbelt Plumbing across Arizona." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="/images/favicon.png" />
+  <link rel="apple-touch-icon" href="/images/favicon.png" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/" class="logo">
+          <img src="/images/logo-horizontal.png" alt="Sunbelt Plumbing" class="logo-nav">
+        </a>
+        <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        <ul class="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/services/">Services</a></li>
+          <li><a href="/pricing/">Pricing</a></li>
+          <li><a href="/gallery/" class="active">Gallery</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="tel:+14805275385" class="nav-phone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            (480) 527-5385
+          </a></li>
+          <li><a href="/quote/" class="btn btn-primary">Get Free Quote</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-header">
+    <div class="container">
+      <div style="margin-bottom: 1rem;">
+        <span class="license-badge">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+          ROC #344103 — Licensed | Bonded | Insured
+        </span>
+      </div>
+      <div class="breadcrumb">
+        <a href="/">Home</a> / <span>Gallery</span>
+      </div>
+      <h1>Our Recent Work</h1>
+      <p>Real jobs, real homes, real results. Browse some of our recent plumbing projects across Arizona.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="gallery-filters">
+        <button class="filter-btn active" data-filter="all">All Projects</button>
+        <button class="filter-btn" data-filter="repair">Repairs</button>
+        <button class="filter-btn" data-filter="install">Installations</button>
+        <button class="filter-btn" data-filter="remodel">Remodels</button>
+      </div>
+
+      <!-- REPLACE ME: Replace these Unsplash placeholder images with actual job photos.
+           To swap an image: change the src="..." URL to point to your photo file (e.g., assets/images/job-01.jpg)
+           To add a new photo: copy any <div class="gallery-item">...</div> block and edit the src, alt, h4, and p text.
+           To remove a photo: delete the entire <div class="gallery-item">...</div> block. -->
+      <div class="gallery-grid">
+
+        <div class="gallery-item" data-category="install">
+          <img src="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=600&q=80" alt="Modern bathroom faucet installation" loading="lazy" />
+          <div class="gallery-caption">
+            <h4>Modern Faucet Install</h4>
+            <p>Master bath upgrade · Scottsdale</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="repair">
+          <img src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=600&q=80" alt="Pipe repair under sink" loading="lazy" />
+          <div class="gallery-caption">
+            <h4>Under-Sink Repair</h4>
+            <p>Leak fix · Phoenix</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="install">
+          <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?w=600&q=80" alt="New water heater installation" loading="lazy" />
+          <div class="gallery-caption">
+            <h4>Water Heater Replacement</h4>
+            <p>Tankless install · Mesa</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="remodel">
+          <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=600&q=80" alt="Bathroom remodel rough-in" loading="lazy" />
+          <div class="gallery-caption">
+            <h4>Bathroom Remodel</h4>
+            <p>Full plumbing rough-in · Tempe</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="repair">
+          <img src="https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=600&q=80" alt="Kitchen sink plumbing repair" loading="lazy" />
+          <div class="gallery-caption">
+            <h4>Kitchen Drain Repair</h4>
+            <p>Clog clearing · Chandler</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="install">
+          <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&q=80" alt="New shower installation" loading="lazy" />
+          <div class="gallery-caption">
+            <h4>Walk-In Shower Install</h4>
+            <p>Master bath upgrade · Gilbert</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="remodel">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="Kitchen remodel" loading="lazy" />
+          <div class="gallery-caption">
+            <h4>Kitchen Plumbing Remodel</h4>
+            <p>New island sink + dishwasher · Phoenix</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="repair">
+          <img src="https://images.unsplash.com/photo-1631889993959-41b4e9c6e3c5?w=600&q=80" alt="Toilet repair and replacement" loading="lazy" />
+          <div class="gallery-caption">
+            <h4>Toilet Replacement</h4>
+            <p>Same-day service · Glendale</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="install">
+          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80" alt="New plumbing fixtures" loading="lazy" />
+          <div class="gallery-caption">
+            <h4>Fixture Upgrade Package</h4>
+            <p>Full home refresh · Scottsdale</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="container">
+      <div class="cta-band-grid">
+        <div>
+          <h2>Your project could be next</h2>
+          <p>Whether it's a quick fix or a full remodel — we'd love to help.</p>
+        </div>
+        <div class="cta-band-actions">
+          <a href="/quote/" class="btn btn-quote btn-large">Get a Quote</a>
+          <a href="tel:+14805275385" class="btn btn-ghost btn-large">Call Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="logo">
+          <img src="/images/logo-light.png" alt="Sunbelt Plumbing" class="logo-footer">
+        </a>
+          <p>Family-operated, licensed, and insured plumbing services across Arizona. Fast, fair, and built on trust.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/services/">Services</a></li>
+          <li><a href="/pricing/">Pricing</a></li>
+            <li><a href="/gallery/">Gallery</a></li>
+            <li><a href="/quote/">Get a Quote</a></li>
+            <li><a href="/contact/">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="/services/">Diagnosis & Repair</a></li>
+            <li><a href="/services/">Water Heaters</a></li>
+            <li><a href="/services/">Drain Clearing</a></li>
+            <li><a href="/services/">Sewer Camera</a></li>
+            <li><a href="/services/">Installations</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get In Touch</h4>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <a href="tel:+14805275385">(480) 527-5385</a>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="mailto:shan@sunbeltplumbingaz.com">shan@sunbeltplumbingaz.com</a>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Serving Arizona City & Casa Grande · Phoenix to Tucson</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 Sunbelt Plumbing. All rights reserved.</div>
+        <div class="footer-social">
+          <a href="https://fb.com/SunbeltPlumbingLLC" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="https://fb.com/SunbeltPlumbingLLC" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/script.js"></script>
+  <script src="/js/supabase-client.js"></script>
+  <script src="/js/content-loader.js"></script>
+
+<!-- ========== FACEBOOK MESSENGER FLOATING CHAT ========== -->
+<div class="fb-chat-widget" id="fbChatWidget">
+  <div class="fb-chat-bubble" id="fbChatBubble">
+    <span class="fb-chat-bubble-close" onclick="document.getElementById('fbChatBubble').classList.add('hidden'); event.stopPropagation();" aria-label="Close">×</span>
+    <strong>Got a plumbing question?</strong>
+    Chat with us on Messenger!
+  </div>
+  <a href="https://m.me/SunbeltPlumbingLLC" target="_blank" rel="noopener" class="fb-chat-button" aria-label="Chat with Sunbelt Plumbing on Facebook Messenger" title="Chat with us on Facebook Messenger">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2C6.477 2 2 6.145 2 11.259c0 2.913 1.454 5.512 3.726 7.21V22l3.405-1.869c.909.252 1.871.388 2.869.388 5.523 0 10-4.145 10-9.26C22 6.145 17.523 2 12 2zm.997 12.467l-2.546-2.715-4.97 2.715 5.467-5.804 2.61 2.715 4.907-2.715-5.468 5.804z"/>
+    </svg>
+  </a>
+</div>
+<script>
+  // Bubble can also click to open Messenger
+  document.getElementById('fbChatBubble').addEventListener('click', function(e) {
+    if (!e.target.classList.contains('fb-chat-bubble-close')) {
+      window.open('https://m.me/SunbeltPlumbingLLC', '_blank');
+    }
+  });
+  // Auto-hide bubble after 12 seconds (less intrusive)
+  setTimeout(function() {
+    var b = document.getElementById('fbChatBubble');
+    if (b) b.classList.add('hidden');
+  }, 12000);
+</script>
+
+</body>
+</html>

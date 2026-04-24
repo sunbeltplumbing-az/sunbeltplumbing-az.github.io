@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery — Sunbelt Plumbing Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+
+  <link rel="icon" type="image/png" href="/images/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/admin.css" />
+</head>
+<body class="admin-body">
+
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar-logo">
+        <img src="/images/logo-light.png" alt="Sunbelt Plumbing" />
+        <div class="admin-sidebar-logo-text">Admin Panel</div>
+      </div>
+      <ul class="admin-nav">
+        <li><a href="/admin/dashboard.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Dashboard
+        </a></li>
+        <li><a href="/admin/gallery.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          Gallery
+        </a></li>
+        <li><a href="/admin/testimonials.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Testimonials
+        </a></li>
+        <li><a href="/admin/settings.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          Business Info
+        </a></li>
+        <li><a href="/" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          View Live Site
+        </a></li>
+      </ul>
+      <div class="admin-sidebar-footer">
+        <div class="admin-user-info" id="admin-user-email">loading...</div>
+        <button class="admin-logout-btn" id="admin-logout-btn">Sign out</button>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <div class="admin-page-header">
+        <div>
+          <h1>Gallery</h1>
+          <p class="subtitle">Photos of your work shown on the Gallery page.</p>
+        </div>
+      </div>
+
+      <!-- Upload card -->
+      <div class="admin-card">
+        <div class="admin-card-header">
+          <h2>Add new photo</h2>
+        </div>
+        <label class="upload-dropzone" id="dropzone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="17 8 12 3 7 8"/>
+            <line x1="12" y1="3" x2="12" y2="15"/>
+          </svg>
+          <div class="main-text">Drop an image here, or click to choose</div>
+          <div class="hint">JPG, PNG, or WebP · max 5 MB · HEIC not supported</div>
+          <input type="file" id="file-input" accept="image/jpeg,image/png,image/webp" />
+        </label>
+
+        <div id="upload-form" class="hidden" style="margin-top: 1rem;">
+          <div class="form-group">
+            <label for="caption-input">Caption (optional)</label>
+            <input type="text" id="caption-input" placeholder="e.g., New water heater install — Casa Grande" maxlength="140" />
+          </div>
+          <div class="form-group">
+            <label for="category-select">Category</label>
+            <select id="category-select">
+              <option value="repair">Repair</option>
+              <option value="install">Install</option>
+              <option value="emergency">Emergency</option>
+              <option value="renovation">Renovation</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="flex gap-sm">
+            <button class="btn-admin btn-admin-primary" id="save-upload-btn">
+              <span id="save-label">Save to gallery</span>
+            </button>
+            <button class="btn-admin btn-admin-secondary" id="cancel-upload-btn">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gallery list -->
+      <div class="admin-card">
+        <div class="admin-card-header">
+          <h2>Current photos</h2>
+          <span class="text-muted" id="photo-count" style="font-size: 0.875rem;"></span>
+        </div>
+        <div id="gallery-container">
+          <div class="admin-spinner-center">
+            <span class="admin-spinner"></span> Loading...
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/supabase-client.js"></script>
+  <script src="/admin/js/admin.js"></script>
+  <script>
+  (async function() {
+    const session = await window.Admin.requireAuth();
+    if (!session) return;
+    const sb = await window.supabaseReady();
+
+    const dropzone = document.getElementById('dropzone');
+    const fileInput = document.getElementById('file-input');
+    const uploadForm = document.getElementById('upload-form');
+    const captionInput = document.getElementById('caption-input');
+    const categorySelect = document.getElementById('category-select');
+    const saveBtn = document.getElementById('save-upload-btn');
+    const saveLabel = document.getElementById('save-label');
+    const cancelBtn = document.getElementById('cancel-upload-btn');
+    const container = document.getElementById('gallery-container');
+    const photoCount = document.getElementById('photo-count');
+
+    let pendingFile = null;
+
+    // ----- Drag and drop -----
+    dropzone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropzone.classList.add('dragover');
+    });
+    dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+    dropzone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropzone.classList.remove('dragover');
+      const file = e.dataTransfer.files[0];
+      if (file) handleFile(file);
+    });
+    fileInput.addEventListener('change', (e) => {
+      if (e.target.files[0]) handleFile(e.target.files[0]);
+    });
+
+    function handleFile(file) {
+      if (file.name.match(/\.(heic|heif)$/i)) {
+        window.Admin.toast('HEIC/HEIF not supported. On iPhone: Settings → Camera → Formats → Most Compatible.', 'error');
+        return;
+      }
+      if (!file.type.match(/^image\/(jpeg|jpg|png|webp)$/i)) {
+        window.Admin.toast('Only JPG, PNG, or WebP images are allowed.', 'error');
+        return;
+      }
+      if (file.size > 5 * 1024 * 1024) {
+        window.Admin.toast('File too large. Maximum 5 MB.', 'error');
+        return;
+      }
+      pendingFile = file;
+      uploadForm.classList.remove('hidden');
+      captionInput.focus();
+    }
+
+    cancelBtn.addEventListener('click', () => {
+      pendingFile = null;
+      uploadForm.classList.add('hidden');
+      captionInput.value = '';
+      fileInput.value = '';
+    });
+
+    saveBtn.addEventListener('click', async () => {
+      if (!pendingFile) return;
+      saveBtn.disabled = true;
+      saveLabel.innerHTML = '<span class="admin-spinner"></span> Uploading...';
+      try {
+        const url = await window.Admin.uploadImage(pendingFile, 'gallery');
+
+        // Figure out highest display_order so new photos appear last
+        const { data: maxData } = await sb
+          .from('gallery')
+          .select('display_order')
+          .order('display_order', { ascending: false })
+          .limit(1);
+        const nextOrder = (maxData?.[0]?.display_order ?? 0) + 10;
+
+        const { data, error } = await sb.from('gallery').insert({
+          image_url: url,
+          caption: captionInput.value.trim() || null,
+          category: categorySelect.value,
+          display_order: nextOrder,
+          is_active: true
+        }).select().single();
+
+        if (error) throw error;
+
+        await window.Admin.logAction('gallery', data.id, 'create', null, data);
+        window.Admin.toast('Photo added to gallery!', 'success');
+
+        pendingFile = null;
+        uploadForm.classList.add('hidden');
+        captionInput.value = '';
+        fileInput.value = '';
+        loadGallery();
+      } catch (err) {
+        console.error(err);
+        window.Admin.toast('Upload failed: ' + err.message, 'error');
+      } finally {
+        saveBtn.disabled = false;
+        saveLabel.textContent = 'Save to gallery';
+      }
+    });
+
+    // ----- Load and render gallery -----
+    async function loadGallery() {
+      container.innerHTML = '<div class="admin-spinner-center"><span class="admin-spinner"></span> Loading...</div>';
+      const { data, error } = await sb
+        .from('gallery')
+        .select('*')
+        .eq('is_active', true)
+        .order('display_order', { ascending: true });
+
+      if (error) {
+        container.innerHTML = `<div class="alert alert-error">Could not load gallery: ${window.Admin.escapeHtml(error.message)}</div>`;
+        return;
+      }
+
+      photoCount.textContent = `${data.length} photo${data.length === 1 ? '' : 's'}`;
+
+      if (data.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <h3>No photos yet</h3>
+            <p>Upload your first photo above to get started.</p>
+          </div>`;
+        return;
+      }
+
+      container.innerHTML = `<div class="admin-gallery-grid">${data.map(item => `
+        <div class="admin-gallery-item" data-id="${item.id}">
+          <img src="${window.Admin.escapeHtml(item.image_url)}" alt="${window.Admin.escapeHtml(item.caption || 'Gallery photo')}" class="admin-gallery-thumb" />
+          <div class="admin-gallery-item-body">
+            <p class="admin-gallery-caption">${item.caption ? window.Admin.escapeHtml(item.caption) : '<span class="text-muted">No caption</span>'}</p>
+            <div class="admin-gallery-meta">
+              <span class="badge badge-active">${window.Admin.escapeHtml(item.category || 'other')}</span>
+              <span>#${item.display_order}</span>
+            </div>
+            <div class="admin-gallery-actions">
+              <button class="btn-admin btn-admin-secondary btn-admin-small" data-action="edit" data-id="${item.id}">Edit</button>
+              <button class="btn-admin btn-admin-secondary btn-admin-small" data-action="up" data-id="${item.id}">↑</button>
+              <button class="btn-admin btn-admin-secondary btn-admin-small" data-action="down" data-id="${item.id}">↓</button>
+              <button class="btn-admin btn-admin-danger btn-admin-small" data-action="delete" data-id="${item.id}">×</button>
+            </div>
+          </div>
+        </div>
+      `).join('')}</div>`;
+
+      // Wire up actions
+      container.querySelectorAll('[data-action]').forEach(btn => {
+        btn.addEventListener('click', () => handleAction(btn.dataset.action, btn.dataset.id, data));
+      });
+    }
+
+    async function handleAction(action, id, allItems) {
+      const item = allItems.find(i => i.id === id);
+      if (!item) return;
+
+      if (action === 'edit') {
+        const newCaption = prompt('Edit caption:', item.caption || '');
+        if (newCaption === null) return;
+        const { error } = await sb.from('gallery').update({ caption: newCaption.trim() || null }).eq('id', id);
+        if (error) {
+          window.Admin.toast('Update failed: ' + error.message, 'error');
+        } else {
+          window.Admin.toast('Caption updated.', 'success');
+          await window.Admin.logAction('gallery', id, 'update', item, { ...item, caption: newCaption });
+          loadGallery();
+        }
+      } else if (action === 'delete') {
+        const ok = await window.Admin.confirm('Remove this photo from the gallery?', 'Delete photo');
+        if (!ok) return;
+        const { error } = await sb.from('gallery').update({ is_active: false }).eq('id', id);
+        if (error) {
+          window.Admin.toast('Delete failed: ' + error.message, 'error');
+        } else {
+          window.Admin.toast('Photo removed.', 'success');
+          await window.Admin.logAction('gallery', id, 'soft_delete', item, null);
+          loadGallery();
+        }
+      } else if (action === 'up' || action === 'down') {
+        const idx = allItems.findIndex(i => i.id === id);
+        const swapIdx = action === 'up' ? idx - 1 : idx + 1;
+        if (swapIdx < 0 || swapIdx >= allItems.length) return;
+        const other = allItems[swapIdx];
+        // Swap display_order
+        const a = sb.from('gallery').update({ display_order: other.display_order }).eq('id', item.id);
+        const b = sb.from('gallery').update({ display_order: item.display_order }).eq('id', other.id);
+        const [r1, r2] = await Promise.all([a, b]);
+        if (r1.error || r2.error) {
+          window.Admin.toast('Reorder failed.', 'error');
+        } else {
+          loadGallery();
+        }
+      }
+    }
+
+    loadGallery();
+  })();
+  </script>
+</body>
+</html>

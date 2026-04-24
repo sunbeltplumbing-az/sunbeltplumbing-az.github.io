@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get a Free Plumbing Quote | Sunbelt Plumbing Arizona</title>
+  <meta name="description" content="Request a free, no-obligation plumbing quote from Sunbelt Plumbing. Fast response, honest pricing, licensed and insured." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="/images/favicon.png" />
+  <link rel="apple-touch-icon" href="/images/favicon.png" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/" class="logo">
+          <img src="/images/logo-horizontal.png" alt="Sunbelt Plumbing" class="logo-nav">
+        </a>
+        <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        <ul class="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/services/">Services</a></li>
+          <li><a href="/pricing/">Pricing</a></li>
+          <li><a href="/gallery/">Gallery</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="tel:+14805275385" class="nav-phone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            (480) 527-5385
+          </a></li>
+          <li><a href="/quote/" class="btn btn-primary active">Get Free Quote</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-header">
+    <div class="container">
+      <div style="margin-bottom: 1rem;">
+        <span class="license-badge">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+          ROC #344103 — Licensed | Bonded | Insured
+        </span>
+      </div>
+      <div class="breadcrumb">
+        <a href="/">Home</a> / <span>Get a Quote</span>
+      </div>
+      <h1>Request Your Free Quote</h1>
+      <p>Tell us a little about your plumbing project and we'll get back to you fast — usually within a few hours during business days.</p>
+    </div>
+  </section>
+
+  <section class="form-section">
+    <div class="container">
+      <div class="form-grid">
+
+        <div class="form-card">
+          <!-- REPLACE ME: replace YOUR_FORM_ID below with your actual Formspree form ID
+               Sign up at https://formspree.io, create a form, and paste the endpoint here.
+               Example: action="https://formspree.io/f/xpzgkqyl" -->
+          <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" data-handler="formspree">
+            <div class="success-message">
+              ✓ Thanks! We received your request and will be in touch shortly.
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="name">Full Name <span class="req">*</span></label>
+                <input type="text" id="name" name="name" class="form-input" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="phone">Phone Number <span class="req">*</span></label>
+                <input type="tel" id="phone" name="phone" class="form-input" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="email">Email Address <span class="req">*</span></label>
+              <input type="email" id="email" name="email" class="form-input" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="service">Type of Service Needed <span class="req">*</span></label>
+              <select id="service" name="service" class="form-select" required>
+                <option value="">— Select a service —</option>
+                <option>Emergency Repair</option>
+                <option>Water Heater Installation/Repair</option>
+                <option>Drain Cleaning</option>
+                <option>Leak Detection</option>
+                <option>Pipe Repair / Repiping</option>
+                <option>Fixture Installation</option>
+                <option>Sewer Line Service</option>
+                <option>Bathroom/Kitchen Remodel</option>
+                <option>Other / Not sure</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="city">City / Service Area</label>
+              <input type="text" id="city" name="city" class="form-input" placeholder="e.g. Phoenix, Casa Grande, Tucson" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="message">Project Details <span class="req">*</span></label>
+              <textarea id="message" name="message" class="form-textarea" placeholder="Briefly describe what's going on — when it started, where in the home, anything you've already tried..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-large form-submit">
+              Send My Request →
+            </button>
+
+            <p style="font-size: 0.8125rem; color: var(--color-grey-500); margin-top: var(--space-sm); margin-bottom: 0; text-align: center;">
+              No obligation. We'll never share your info.
+            </p>
+          </form>
+        </div>
+
+        <div>
+          <span class="eyebrow">What Happens Next</span>
+          <h2 style="font-size: 1.875rem; margin-bottom: 1rem;">Quick, simple, no pressure</h2>
+          <p style="margin-bottom: 2rem;">Once you submit your request, here's what to expect:</p>
+
+          <div class="contact-info-list">
+            <div class="contact-info-item">
+              <div class="contact-info-icon">
+                <strong style="font-family: var(--font-display); font-size: 1.125rem;">1</strong>
+              </div>
+              <div>
+                <div class="contact-info-label">We Review</div>
+                <div class="contact-info-value" style="font-size: 1rem; font-weight: 600;">We read your request and pull together the right info to give you an accurate quote.</div>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <div class="contact-info-icon">
+                <strong style="font-family: var(--font-display); font-size: 1.125rem;">2</strong>
+              </div>
+              <div>
+                <div class="contact-info-label">We Respond Fast</div>
+                <div class="contact-info-value" style="font-size: 1rem; font-weight: 600;">Expect a call or email back within a few hours during business hours.</div>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <div class="contact-info-icon">
+                <strong style="font-family: var(--font-display); font-size: 1.125rem;">3</strong>
+              </div>
+              <div>
+                <div class="contact-info-label">You Decide</div>
+                <div class="contact-info-value" style="font-size: 1rem; font-weight: 600;">No pressure, no obligation. If the quote works, we schedule. If not, no hard feelings.</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="background: var(--color-blue-900); color: white; padding: 1.5rem; border-radius: 12px; margin-top: 2rem;">
+            <div style="font-family: var(--font-display); font-weight: 700; font-size: 1.125rem; margin-bottom: 0.5rem;">⚡ Need help right now?</div>
+            <p style="color: rgba(255,255,255,0.85); font-size: 0.9375rem; margin-bottom: 1rem;">For plumbing emergencies, please call us directly — we'll respond faster than a form.</p>
+            <a href="tel:+14805275385" class="btn btn-primary" style="background: white; color: var(--color-blue-900); width: 100%; justify-content: center;">Call (480) 527-5385</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="logo">
+          <img src="/images/logo-light.png" alt="Sunbelt Plumbing" class="logo-footer">
+        </a>
+          <p>Family-operated, licensed, and insured plumbing services across Arizona. Fast, fair, and built on trust.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/services/">Services</a></li>
+          <li><a href="/pricing/">Pricing</a></li>
+            <li><a href="/gallery/">Gallery</a></li>
+            <li><a href="/quote/">Get a Quote</a></li>
+            <li><a href="/contact/">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="/services/">Diagnosis & Repair</a></li>
+            <li><a href="/services/">Water Heaters</a></li>
+            <li><a href="/services/">Drain Clearing</a></li>
+            <li><a href="/services/">Sewer Camera</a></li>
+            <li><a href="/services/">Installations</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get In Touch</h4>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <a href="tel:+14805275385">(480) 527-5385</a>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="mailto:shan@sunbeltplumbingaz.com">shan@sunbeltplumbingaz.com</a>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Serving Arizona City & Casa Grande · Phoenix to Tucson</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 Sunbelt Plumbing. All rights reserved.</div>
+        <div class="footer-social">
+          <a href="https://fb.com/SunbeltPlumbingLLC" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="https://fb.com/SunbeltPlumbingLLC" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/script.js"></script>
+
+<!-- ========== FACEBOOK MESSENGER FLOATING CHAT ========== -->
+<div class="fb-chat-widget" id="fbChatWidget">
+  <div class="fb-chat-bubble" id="fbChatBubble">
+    <span class="fb-chat-bubble-close" onclick="document.getElementById('fbChatBubble').classList.add('hidden'); event.stopPropagation();" aria-label="Close">×</span>
+    <strong>Got a plumbing question?</strong>
+    Chat with us on Messenger!
+  </div>
+  <a href="https://m.me/SunbeltPlumbingLLC" target="_blank" rel="noopener" class="fb-chat-button" aria-label="Chat with Sunbelt Plumbing on Facebook Messenger" title="Chat with us on Facebook Messenger">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2C6.477 2 2 6.145 2 11.259c0 2.913 1.454 5.512 3.726 7.21V22l3.405-1.869c.909.252 1.871.388 2.869.388 5.523 0 10-4.145 10-9.26C22 6.145 17.523 2 12 2zm.997 12.467l-2.546-2.715-4.97 2.715 5.467-5.804 2.61 2.715 4.907-2.715-5.468 5.804z"/>
+    </svg>
+  </a>
+</div>
+<script>
+  // Bubble can also click to open Messenger
+  document.getElementById('fbChatBubble').addEventListener('click', function(e) {
+    if (!e.target.classList.contains('fb-chat-bubble-close')) {
+      window.open('https://m.me/SunbeltPlumbingLLC', '_blank');
+    }
+  });
+  // Auto-hide bubble after 12 seconds (less intrusive)
+  setTimeout(function() {
+    var b = document.getElementById('fbChatBubble');
+    if (b) b.classList.add('hidden');
+  }, 12000);
+</script>
+
+</body>
+</html>

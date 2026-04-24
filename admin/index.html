@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login — Sunbelt Plumbing</title>
+  <meta name="robots" content="noindex, nofollow" />
+
+  <link rel="icon" type="image/png" href="/images/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/admin.css" />
+</head>
+<body class="admin-body">
+
+  <div class="admin-login-wrap">
+    <div class="admin-login-card">
+      <div class="admin-login-logo">
+        <img src="/images/logo-horizontal.png" alt="Sunbelt Plumbing" />
+      </div>
+      <h1>Admin Login</h1>
+      <p class="subtitle">Sign in to manage your Sunbelt Plumbing website content.</p>
+
+      <div id="alert-box"></div>
+
+      <!-- Login form (shown by default) -->
+      <div id="login-form-wrap">
+        <div class="form-group">
+          <label for="email">Business email</label>
+          <input type="email" id="email" placeholder="you@example.com" autocomplete="email" />
+          <div class="hint">We'll send you a secure one-time login link — no password needed.</div>
+        </div>
+        <button id="send-link-btn" class="btn-admin btn-admin-primary btn-admin-full">
+          <span id="send-link-label">Send login link</span>
+        </button>
+        <p style="text-align: center; margin-top: 1.5rem; font-size: 0.8125rem; color: #64748b;">
+          Trouble signing in? Message your developer on Messenger.
+        </p>
+      </div>
+
+      <!-- "Check your email" confirmation (hidden until sent) -->
+      <div id="check-email-wrap" class="hidden" style="text-align: center;">
+        <div style="width: 56px; height: 56px; background: #dcfce7; border-radius: 50%; margin: 0 auto 1rem; display: grid; place-items: center;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" width="28" height="28">
+            <polyline points="22,6 12,13 2,6"/>
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          </svg>
+        </div>
+        <h2 style="font-family: Manrope, sans-serif; margin: 0 0 0.5rem 0;">Check your email</h2>
+        <p style="color: #64748b; margin: 0 0 1rem 0;">
+          We sent a secure login link to <strong id="sent-to-email"></strong>.
+        </p>
+        <p style="color: #64748b; font-size: 0.875rem; margin: 0 0 1.5rem 0;">
+          Click the link in that email to sign in. It will expire in 1 hour.<br>
+          <span style="color: #94a3b8;">Not seeing it? Check your spam folder.</span>
+        </p>
+        <button id="try-again-btn" class="btn-admin btn-admin-secondary btn-admin-full">
+          Use a different email
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/supabase-client.js"></script>
+  <script src="/admin/js/admin.js"></script>
+  <script>
+  (async function() {
+    const sb = await window.supabaseReady();
+
+    // If already logged in, skip straight to dashboard
+    const { data: { session } } = await sb.auth.getSession();
+    if (session) {
+      window.location.href = '/admin/dashboard.html';
+      return;
+    }
+
+    // Also auto-redirect when the magic link resolves the session
+    sb.auth.onAuthStateChange((event, session) => {
+      if (event === 'SIGNED_IN' && session) {
+        window.location.href = '/admin/dashboard.html';
+      }
+    });
+
+    const emailInput = document.getElementById('email');
+    const sendBtn = document.getElementById('send-link-btn');
+    const sendLabel = document.getElementById('send-link-label');
+    const loginWrap = document.getElementById('login-form-wrap');
+    const checkWrap = document.getElementById('check-email-wrap');
+    const sentTo = document.getElementById('sent-to-email');
+    const alertBox = document.getElementById('alert-box');
+    const tryAgainBtn = document.getElementById('try-again-btn');
+
+    function showAlert(type, message) {
+      alertBox.innerHTML = `<div class="alert alert-${type}">${window.Admin.escapeHtml(message)}</div>`;
+    }
+    function clearAlert() { alertBox.innerHTML = ''; }
+
+    async function sendMagicLink() {
+      const email = emailInput.value.trim();
+      if (!email || !email.includes('@')) {
+        showAlert('error', 'Please enter a valid email address.');
+        return;
+      }
+      clearAlert();
+      sendBtn.disabled = true;
+      sendLabel.innerHTML = '<span class="admin-spinner"></span> Sending...';
+
+      const { error } = await sb.auth.signInWithOtp({
+        email: email,
+        options: {
+          emailRedirectTo: window.location.origin + '/admin/dashboard.html'
+        }
+      });
+
+      sendBtn.disabled = false;
+      sendLabel.textContent = 'Send login link';
+
+      if (error) {
+        showAlert('error', 'Could not send login link: ' + error.message);
+        return;
+      }
+
+      sentTo.textContent = email;
+      loginWrap.classList.add('hidden');
+      checkWrap.classList.remove('hidden');
+    }
+
+    sendBtn.addEventListener('click', sendMagicLink);
+    emailInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') sendMagicLink();
+    });
+    tryAgainBtn.addEventListener('click', () => {
+      loginWrap.classList.remove('hidden');
+      checkWrap.classList.add('hidden');
+      emailInput.value = '';
+      emailInput.focus();
+    });
+
+    emailInput.focus();
+  })();
+  </script>
+</body>
+</html>
