@@ -108,7 +108,6 @@
               ${groups[cat].map(p => `
                 <div class="pricing-item">
                   <span class="pricing-item-name">${escapeHtml(p.item_name)}${p.notes ? ` <span class="pricing-item-note">${escapeHtml(p.notes)}</span>` : ''}</span>
-                  <span class="pricing-item-price">$${parseFloat(p.price).toFixed(2)}</span>
                 </div>`).join('')}
             </div>
           </div>`).join('');
