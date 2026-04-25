@@ -237,14 +237,14 @@ ON CONFLICT DO NOTHING;
 -- Services (Shan's flyer order)
 INSERT INTO services (slug, title, description, image_url, display_order, is_featured_on_home) VALUES
   ('sewer-camera-locating', 'Sewer Camera Locating', 'Pinpoint sewer line issues with high-resolution camera inspections — no guessing, no unnecessary digging.', '/images/sewer_camera.jpg', 10, true),
-  ('sewer-main-repairs',    'Sewer Main Repairs',    'Repair or replace damaged sewer mains — traditional and trenchless methods for minimal disruption.', null, 20, true),
-  ('drain-clearing',        'Drain Clearing',        'Clear stubborn clogs in showers, sinks, toilets, and main lines with professional cable and hydro-jet equipment.', null, 30, true),
-  ('whole-house-repipes',   'Whole House Repipes',   'Replace your home''s old or corroded pipes with modern materials built to last decades.', null, 40, true),
+  ('sewer-main-repairs',    'Sewer Main Repairs',    'Repair or replace damaged sewer mains — traditional and trenchless methods for minimal disruption.', '/images/services/sewer_main_repair.jpg', 20, true),
+  ('drain-clearing',        'Drain Clearing',        'Clear stubborn clogs in showers, sinks, toilets, and main lines with professional cable and hydro-jet equipment.', '/images/services/drain_clearing.jpg', 30, true),
+  ('whole-house-repipes',   'Whole House Repipes',   'Replace your home''s old or corroded pipes with modern materials built to last decades.', '/images/services/whole_house_repipe.jpg', 40, true),
   ('water-heaters',         'Water Heaters',         'Installation, repair, and replacement of standard tank and tankless water heaters — electric and gas.', '/images/water_heater.jpg', 50, true),
-  ('water-softeners',       'Water Softeners',       'Protect your pipes and appliances from Arizona''s hard water with a professionally installed softener system.', null, 60, true),
-  ('permits-inspections',   'Permits & Inspections', 'We pull city permits and handle inspections so your project is fully up to code — no shortcuts, no surprises.', null, 70, true),
+  ('water-softeners',       'Water Softeners',       'Protect your pipes and appliances from Arizona''s hard water with a professionally installed softener system.', '/images/services/water_softener.jpg', 60, true),
+  ('permits-inspections',   'Permits & Inspections', 'We pull city permits and handle inspections so your project is fully up to code — no shortcuts, no surprises.', '/images/services/permits_inspections.jpg', 70, true),
   ('diagnosis-repair',      'Diagnosis & Repair',    'Accurate diagnosis of any plumbing issue, followed by a clean, lasting repair done right the first time.', '/images/wrench_pipe.jpg', 80, true),
-  ('fixture-installations', 'Fixture Installations', 'Sinks, toilets, faucets, shower valves, garbage disposals — installed cleanly and to code.', null, 90, true)
+  ('fixture-installations', 'Fixture Installations', 'Sinks, toilets, faucets, shower valves, garbage disposals — installed cleanly and to code.', '/images/services/fixture_install.jpg', 90, true)
 ON CONFLICT (slug) DO NOTHING;
 
 
