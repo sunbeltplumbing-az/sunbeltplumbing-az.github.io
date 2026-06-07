@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Site Health — Sunbelt Plumbing Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+
+  <link rel="icon" type="image/png" href="/images/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/admin.css" />
+  <style>
+    .health-item { display:flex; gap:0.85rem; align-items:flex-start; padding:0.85rem 0; border-bottom:1px solid var(--admin-border); }
+    .health-item:last-child { border-bottom:0; }
+    .health-pill { flex-shrink:0; width:26px; height:26px; border-radius:50%; display:grid; place-items:center; color:#fff; font-weight:700; font-size:14px; }
+    .health-pill.pass { background:#16a34a; }
+    .health-pill.warn { background:#f59e0b; }
+    .health-pill.fail { background:#dc2626; }
+    .health-pill.run  { background:#94a3b8; }
+    .health-body { flex:1; min-width:0; }
+    .health-name { font-weight:600; }
+    .health-detail { color:#64748b; font-size:0.875rem; margin-top:0.15rem; white-space:pre-wrap; }
+    .health-summary { display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:1rem; }
+    .health-stat { background:#f8fafc; border:1px solid var(--admin-border); border-radius:8px; padding:0.6rem 1rem; font-size:0.875rem; }
+    .health-stat b { font-size:1.25rem; display:block; }
+  </style>
+</head>
+<body class="admin-body">
+
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar-logo">
+        <img src="/images/logo-light.png" alt="Sunbelt Plumbing" />
+        <div class="admin-sidebar-logo-text">Admin Panel</div>
+      </div>
+      <ul class="admin-nav">
+        <li><a href="/admin/dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard</a></li>
+        <li><a href="/admin/services.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>Services</a></li>
+        <li><a href="/admin/pricing.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Pricing (Internal)</a></li>
+        <li><a href="/admin/gallery.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Gallery</a></li>
+        <li><a href="/admin/site-images.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 16l4.586-4.586a2 2 0 0 1 2.828 0L16 16m-2-2l1.586-1.586a2 2 0 0 1 2.828 0L20 14M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><circle cx="9" cy="9" r="1"/></svg>Site Images</a></li>
+        <li><a href="/admin/testimonials.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Testimonials</a></li>
+        <li><a href="/admin/service-areas.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Service Areas</a></li>
+        <li><a href="/admin/settings.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6M12 17v6M4.2 4.2l4.3 4.3M15.5 15.5l4.3 4.3M1 12h6M17 12h6M4.2 19.8l4.3-4.3M15.5 8.5l4.3-4.3"/></svg>Business Info</a></li>
+        <li><a href="/admin/health.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>Site Health</a></li>
+        <li><a href="/admin/audit-log.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>Activity Log</a></li>
+        <li><a href="/" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>View Live Site</a></li>
+      </ul>
+      <div class="admin-sidebar-footer">
+        <div class="admin-user-info" id="admin-user-email">loading...</div>
+        <button class="admin-logout-btn" id="admin-logout-btn">Sign out</button>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <div class="admin-page-header">
+        <div>
+          <h1>Site Health</h1>
+          <p class="subtitle">One-click checkup of your website — content, data, images, and pages.</p>
+        </div>
+        <button class="btn-admin btn-admin-primary" id="run-btn"><span id="run-label">Run checks</span></button>
+      </div>
+
+      <div class="admin-card">
+        <div id="health-summary" class="health-summary hidden"></div>
+        <div id="health-results">
+          <div class="empty-state">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            <h3>Ready to check</h3>
+            <p>Click <strong>Run checks</strong> to scan your website for problems.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/supabase-client.js"></script>
+  <script src="/admin/js/admin.js"></script>
+  <script>
+  (async function() {
+    const session = await window.Admin.requireAuth();
+    if (!session) return;
+    const sb = await window.supabaseReady();
+
+    const runBtn = document.getElementById('run-btn');
+    const runLabel = document.getElementById('run-label');
+    const results = document.getElementById('health-results');
+    const summaryEl = document.getElementById('health-summary');
+    const esc = window.Admin.escapeHtml;
+
+    // Try to load an image URL, resolve to true/false (with timeout)
+    function imageLoads(url, timeoutMs = 8000) {
+      return new Promise((resolve) => {
+        const img = new Image();
+        let done = false;
+        const finish = (ok) => { if (!done) { done = true; resolve(ok); } };
+        const t = setTimeout(() => finish(false), timeoutMs);
+        img.onload = () => { clearTimeout(t); finish(true); };
+        img.onerror = () => { clearTimeout(t); finish(false); };
+        img.src = url;
+      });
+    }
+
+    // ----- The checks. Each returns { name, status, detail } -----
+    const CHECKS = [
+      async function databaseConnection() {
+        const { error } = await sb.from('site_settings').select('id').limit(1);
+        if (error) return { name: 'Database connection', status: 'fail', detail: 'Could not reach the database: ' + error.message };
+        return { name: 'Database connection', status: 'pass', detail: 'Connected to Supabase successfully.' };
+      },
+
+      async function businessInfo() {
+        const { data, error } = await sb.from('site_settings').select('*').eq('id', 'main').maybeSingle();
+        if (error) return { name: 'Business Info', status: 'fail', detail: error.message };
+        if (!data) return { name: 'Business Info', status: 'warn', detail: 'No business info saved yet. Fill it in under Business Info.' };
+        const missing = ['phone', 'email', 'roc_number'].filter(k => !data[k]);
+        if (missing.length) return { name: 'Business Info', status: 'warn', detail: 'Missing: ' + missing.join(', ') + '. Add them under Business Info.' };
+        return { name: 'Business Info', status: 'pass', detail: `Phone, email, and ROC # are set.` };
+      },
+
+      async function galleryPhotos() {
+        const { data, error } = await sb.from('gallery').select('id, image_url').eq('is_active', true);
+        if (error) return { name: 'Gallery photos', status: 'fail', detail: error.message };
+        if (!data.length) return { name: 'Gallery photos', status: 'warn', detail: 'No photos in the gallery yet. The public page shows a "Photos coming soon" message until you add some.' };
+        // check images load (cap at 12 to keep it fast)
+        const sample = data.slice(0, 12);
+        const oks = await Promise.all(sample.map(g => imageLoads(g.image_url)));
+        const broken = sample.filter((_, i) => !oks[i]).length;
+        if (broken) return { name: 'Gallery photos', status: 'fail', detail: `${data.length} photo(s), but ${broken} won't load (broken image link).` };
+        return { name: 'Gallery photos', status: 'pass', detail: `${data.length} photo(s), all loading correctly.` };
+      },
+
+      async function duplicateTestimonials() {
+        const { data, error } = await sb.from('testimonials').select('customer_name, quote').eq('is_active', true);
+        if (error) return { name: 'Duplicate reviews', status: 'fail', detail: error.message };
+        const seen = new Map();
+        let dupes = 0;
+        for (const t of data) {
+          const key = (t.customer_name || '') + '|' + (t.quote || '');
+          seen.set(key, (seen.get(key) || 0) + 1);
+        }
+        for (const c of seen.values()) if (c > 1) dupes += c - 1;
+        if (dupes) return { name: 'Duplicate reviews', status: 'warn', detail: `${dupes} duplicate review(s) found. Remove extras under Testimonials.` };
+        return { name: 'Duplicate reviews', status: 'pass', detail: `${data.length} review(s), no duplicates.` };
+      },
+
+      async function duplicateAreas() {
+        const { data, error } = await sb.from('service_areas').select('city_name').eq('is_active', true);
+        if (error) return { name: 'Duplicate service areas', status: 'fail', detail: error.message };
+        const seen = {}; let dupes = 0;
+        for (const a of data) { const k = (a.city_name || '').toLowerCase(); seen[k] = (seen[k] || 0) + 1; }
+        for (const k in seen) if (seen[k] > 1) dupes += seen[k] - 1;
+        if (dupes) return { name: 'Duplicate service areas', status: 'warn', detail: `${dupes} duplicate cit(ies) found. Remove extras under Service Areas.` };
+        return { name: 'Duplicate service areas', status: 'pass', detail: `${data.length} cit(ies), no duplicates.` };
+      },
+
+      async function serviceImages() {
+        const { data, error } = await sb.from('services').select('title, image_url').eq('is_active', true);
+        if (error) return { name: 'Service photos', status: 'fail', detail: error.message };
+        const withImg = data.filter(s => s.image_url);
+        if (!withImg.length) return { name: 'Service photos', status: 'warn', detail: 'No service photos set.' };
+        const oks = await Promise.all(withImg.map(s => imageLoads(s.image_url)));
+        const broken = withImg.filter((_, i) => !oks[i]);
+        if (broken.length) return { name: 'Service photos', status: 'fail', detail: `${broken.length} service photo(s) won't load: ` + broken.map(s => s.title).join(', ') };
+        return { name: 'Service photos', status: 'pass', detail: `${withImg.length} service photo(s), all loading.` };
+      },
+
+      async function customSiteImages() {
+        const { data, error } = await sb.from('site_images').select('key, image_url');
+        if (error) return { name: 'Site images (logo/backgrounds)', status: 'fail', detail: error.message };
+        if (!data.length) return { name: 'Site images (logo/backgrounds)', status: 'pass', detail: 'Using the default logo and backgrounds.' };
+        const oks = await Promise.all(data.map(r => imageLoads(r.image_url)));
+        const broken = data.filter((_, i) => !oks[i]);
+        if (broken.length) return { name: 'Site images (logo/backgrounds)', status: 'fail', detail: `${broken.length} custom image(s) won't load: ` + broken.map(r => r.key).join(', ') };
+        return { name: 'Site images (logo/backgrounds)', status: 'pass', detail: `${data.length} custom image(s) set, all loading: ` + data.map(r => r.key).join(', ') };
+      },
+
+      async function publicPages() {
+        const pages = ['/', '/services/', '/service-list/', '/gallery/', '/contact/', '/quote/'];
+        const checks = await Promise.all(pages.map(async (p) => {
+          try {
+            const res = await fetch(p, { method: 'GET', cache: 'no-store' });
+            return { p, ok: res.ok, code: res.status };
+          } catch (e) { return { p, ok: false, code: 'error' }; }
+        }));
+        const bad = checks.filter(c => !c.ok);
+        if (bad.length) return { name: 'Public pages reachable', status: 'fail', detail: 'Not loading: ' + bad.map(b => `${b.p} (${b.code})`).join(', ') };
+        return { name: 'Public pages reachable', status: 'pass', detail: `All ${pages.length} pages return OK.` };
+      }
+    ];
+
+    function pillIcon(status) {
+      return status === 'pass' ? '✓' : status === 'warn' ? '!' : status === 'fail' ? '✕' : '…';
+    }
+
+    function renderRunning() {
+      summaryEl.classList.add('hidden');
+      results.innerHTML = CHECKS.map((fn, i) => `
+        <div class="health-item" id="check-${i}">
+          <div class="health-pill run">…</div>
+          <div class="health-body">
+            <div class="health-name">${esc(humanize(fn.name))}</div>
+            <div class="health-detail">Checking…</div>
+          </div>
+        </div>`).join('');
+    }
+
+    function humanize(fnName) {
+      // fallback label from function name if a check throws before returning
+      return fnName.replace(/([A-Z])/g, ' $1').replace(/^./, c => c.toUpperCase());
+    }
+
+    function renderResult(i, r) {
+      const el = document.getElementById('check-' + i);
+      if (!el) return;
+      el.innerHTML = `
+        <div class="health-pill ${r.status}">${pillIcon(r.status)}</div>
+        <div class="health-body">
+          <div class="health-name">${esc(r.name)}</div>
+          <div class="health-detail">${esc(r.detail)}</div>
+        </div>`;
+    }
+
+    async function run() {
+      runBtn.disabled = true;
+      runLabel.innerHTML = '<span class="admin-spinner"></span> Running...';
+      renderRunning();
+
+      const tally = { pass: 0, warn: 0, fail: 0 };
+      // Run sequentially so the list fills top-to-bottom (nice UX)
+      for (let i = 0; i < CHECKS.length; i++) {
+        let r;
+        try {
+          r = await CHECKS[i]();
+        } catch (e) {
+          r = { name: humanize(CHECKS[i].name), status: 'fail', detail: 'Check crashed: ' + (e.message || e) };
+        }
+        tally[r.status] = (tally[r.status] || 0) + 1;
+        renderResult(i, r);
+      }
+
+      summaryEl.classList.remove('hidden');
+      summaryEl.innerHTML = `
+        <div class="health-stat"><b style="color:#16a34a;">${tally.pass}</b> passed</div>
+        <div class="health-stat"><b style="color:#f59e0b;">${tally.warn}</b> warnings</div>
+        <div class="health-stat"><b style="color:#dc2626;">${tally.fail}</b> problems</div>`;
+
+      runBtn.disabled = false;
+      runLabel.textContent = 'Run checks again';
+    }
+
+    runBtn.addEventListener('click', run);
+    run(); // auto-run on first load
+  })();
+  </script>
+</body>
+</html>
