@@ -265,6 +265,9 @@ VALUES (
 
 
 -- Service areas (matches hardcoded chips on homepage)
+-- Guarded so re-running this script does NOT create duplicate rows
+-- (these tables have no unique key, so ON CONFLICT can't dedupe them).
+DO $seed$ BEGIN IF NOT EXISTS (SELECT 1 FROM service_areas) THEN
 INSERT INTO service_areas (city_name, is_primary, display_order) VALUES
   ('Arizona City', true,  10),
   ('Casa Grande',  true,  20),
@@ -277,8 +280,8 @@ INSERT INTO service_areas (city_name, is_primary, display_order) VALUES
   ('Chandler',     false, 90),
   ('Mesa',         false, 100),
   ('Oro Valley',   false, 110),
-  ('Marana',       false, 120)
-ON CONFLICT DO NOTHING;
+  ('Marana',       false, 120);
+END IF; END $seed$;
 
 
 -- Services (Shan's flyer order)
@@ -295,7 +298,8 @@ INSERT INTO services (slug, title, description, image_url, display_order, is_fea
 ON CONFLICT (slug) DO NOTHING;
 
 
--- Prices from the 2026 PDF
+-- Prices from the 2026 PDF (guarded against duplicate re-seeding)
+DO $seed$ BEGIN IF NOT EXISTS (SELECT 1 FROM prices) THEN
 INSERT INTO prices (category, item_name, price, display_order) VALUES
   -- Drain & Sewer
   ('drain-sewer', 'Cable Clear Shower',                 189.00, 10),
@@ -330,14 +334,18 @@ INSERT INTO prices (category, item_name, price, display_order) VALUES
   ('fan-coil', 'Supply & Install Fan Coil Digital Thermostat',         409.00, 340),
   ('fan-coil', 'Supply & Install Flush Valves & Clean Coils',          389.00, 350),
   ('fan-coil', 'Flush Fan Coil & Clean Coils',                         189.00, 360);
+END IF; END $seed$;
 
 
--- Placeholder testimonials (replace with real reviews via admin)
+-- Placeholder testimonials (replace with real Google reviews via admin)
+-- Guarded so re-running never duplicates them. Delete these once real
+-- reviews are added (see the cleanup snippet at the bottom of this file).
+DO $seed$ BEGIN IF NOT EXISTS (SELECT 1 FROM testimonials) THEN
 INSERT INTO testimonials (customer_name, customer_location, service_type, rating, quote, avatar_letter, display_order) VALUES
   ('Maria L.',  'Phoenix',     'Water heater repair',  5, 'Showed up on time, fixed our water heater the same day, and the price was exactly what they quoted. Couldn''t ask for a better experience.', 'M', 10),
   ('James R.',  'Casa Grande', 'Emergency repair',     5, 'Had a midnight pipe burst and they were at my door within the hour. Friendly, professional, and incredibly skilled. Lifesavers.', 'J', 20),
-  ('Diane K.',  'Tucson',      'Bathroom remodel',     5, 'Renovated our entire bathroom plumbing. Clean work, fair price, and they actually picked up when I called with questions. Highly recommend.', 'D', 30)
-ON CONFLICT DO NOTHING;
+  ('Diane K.',  'Tucson',      'Bathroom remodel',     5, 'Renovated our entire bathroom plumbing. Clean work, fair price, and they actually picked up when I called with questions. Highly recommend.', 'D', 30);
+END IF; END $seed$;
 
 
 -- ============================================================
@@ -370,3 +378,34 @@ ON CONFLICT DO NOTHING;
 -- ============================================================
 
 -- Done! Check the Table Editor to verify tables + seeded rows.
+
+
+-- ============================================================
+-- 6. ONE-TIME MAINTENANCE (run manually if needed)
+-- ============================================================
+-- Earlier versions of this script could insert the placeholder
+-- testimonials/areas/prices more than once when re-run, creating
+-- duplicates. The seeds above are now guarded, but if your live data
+-- already has duplicates, run the matching snippet ONCE.
+
+-- A) Remove duplicate testimonials, keeping the oldest of each:
+--    DELETE FROM testimonials t
+--    USING testimonials d
+--    WHERE t.customer_name = d.customer_name
+--      AND t.quote = d.quote
+--      AND t.created_at > d.created_at;
+
+-- B) When you're ready to switch fully to real Google reviews, delete
+--    ALL placeholder testimonials, then add the real ones via the admin:
+--    DELETE FROM testimonials;
+
+-- C) De-duplicate service areas (keep oldest of each city):
+--    DELETE FROM service_areas a
+--    USING service_areas d
+--    WHERE a.city_name = d.city_name AND a.ctid > d.ctid;
+
+-- D) De-duplicate prices (keep oldest of each item):
+--    DELETE FROM prices p
+--    USING prices d
+--    WHERE p.category = d.category AND p.item_name = d.item_name AND p.ctid > d.ctid;
+-- ============================================================
