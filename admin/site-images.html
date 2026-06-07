@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Site Images — Sunbelt Plumbing Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+
+  <link rel="icon" type="image/png" href="/images/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/admin.css" />
+</head>
+<body class="admin-body">
+
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar-logo">
+        <img src="/images/logo-light.png" alt="Sunbelt Plumbing" />
+        <div class="admin-sidebar-logo-text">Admin Panel</div>
+      </div>
+      <ul class="admin-nav">
+        <li><a href="/admin/dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard</a></li>
+        <li><a href="/admin/services.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>Services</a></li>
+        <li><a href="/admin/pricing.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Pricing (Internal)</a></li>
+        <li><a href="/admin/gallery.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Gallery</a></li>
+        <li><a href="/admin/site-images.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 16l4.586-4.586a2 2 0 0 1 2.828 0L16 16m-2-2l1.586-1.586a2 2 0 0 1 2.828 0L20 14M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><circle cx="9" cy="9" r="1"/></svg>Site Images</a></li>
+        <li><a href="/admin/testimonials.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Testimonials</a></li>
+        <li><a href="/admin/service-areas.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Service Areas</a></li>
+        <li><a href="/admin/settings.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6M12 17v6M4.2 4.2l4.3 4.3M15.5 15.5l4.3 4.3M1 12h6M17 12h6M4.2 19.8l4.3-4.3M15.5 8.5l4.3-4.3"/></svg>Business Info</a></li>
+        <li><a href="/admin/audit-log.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>Activity Log</a></li>
+        <li><a href="/" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>View Live Site</a></li>
+      </ul>
+      <div class="admin-sidebar-footer">
+        <div class="admin-user-info" id="admin-user-email">loading...</div>
+        <button class="admin-logout-btn" id="admin-logout-btn">Sign out</button>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <div class="admin-page-header">
+        <div>
+          <h1>Site Images</h1>
+          <p class="subtitle">Swap the main pictures used across your website — logo and background photos.</p>
+        </div>
+      </div>
+
+      <div class="alert alert-info" style="margin-bottom: 1.5rem;">
+        <strong>Tip:</strong> these are the big, site-wide images. To add photos of your jobs, use <a href="/admin/gallery.html">Gallery</a> instead. Changes appear on the live site within a few seconds.
+      </div>
+
+      <div id="slots-container">
+        <div class="admin-spinner-center"><span class="admin-spinner"></span> Loading...</div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/supabase-client.js"></script>
+  <script src="/admin/js/admin.js"></script>
+  <script>
+  (async function() {
+    const session = await window.Admin.requireAuth();
+    if (!session) return;
+    const sb = await window.supabaseReady();
+
+    const container = document.getElementById('slots-container');
+
+    // The editable image slots. `key` matches what content-loader.js applies.
+    const SLOTS = [
+      {
+        key: 'logo',
+        title: 'Logo',
+        desc: 'Shown in the website header (and footer). A wide/horizontal PNG with a transparent background works best.',
+        fallback: '/images/logo-horizontal.png',
+        bg: '#0f172a'
+      },
+      {
+        key: 'hero_bg',
+        title: 'Homepage hero background',
+        desc: 'The faint background photo behind the big headline on your homepage.',
+        fallback: '/images/bg_pipes.jpg',
+        bg: '#fff'
+      },
+      {
+        key: 'page_header_bg',
+        title: 'Page header background',
+        desc: 'The faint background photo behind the title bar on inner pages (Services, Gallery, Contact).',
+        fallback: '/images/bg_pipes.jpg',
+        bg: '#fff'
+      }
+    ];
+
+    let current = {}; // key -> image_url
+
+    async function load() {
+      const { data, error } = await sb.from('site_images').select('key, image_url');
+      if (error) {
+        container.innerHTML = `<div class="alert alert-error">Could not load: ${window.Admin.escapeHtml(error.message)}</div>`;
+        return;
+      }
+      current = {};
+      (data || []).forEach(r => { current[r.key] = r.image_url; });
+      render();
+    }
+
+    function render() {
+      container.innerHTML = SLOTS.map(slot => {
+        const url = current[slot.key] || slot.fallback;
+        const isCustom = !!current[slot.key];
+        return `
+          <div class="admin-card" data-key="${slot.key}">
+            <div class="admin-card-header">
+              <h2>${window.Admin.escapeHtml(slot.title)}</h2>
+              <span class="badge badge-${isCustom ? 'active' : 'inactive'}">${isCustom ? 'Custom' : 'Default'}</span>
+            </div>
+            <p class="text-muted" style="margin-top: -0.25rem;">${window.Admin.escapeHtml(slot.desc)}</p>
+            <div style="display:flex; gap:1.25rem; flex-wrap:wrap; align-items:flex-start;">
+              <div style="background:${slot.bg}; padding:0.75rem; border-radius:8px; border:1px solid var(--admin-border);">
+                <img src="${window.Admin.escapeHtml(url)}" alt="${window.Admin.escapeHtml(slot.title)} preview" style="display:block; max-width:240px; max-height:140px; width:auto; height:auto; object-fit:contain;" />
+              </div>
+              <div style="flex:1; min-width:240px;">
+                <label class="upload-dropzone" data-dz="${slot.key}">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="17 8 12 3 7 8"/>
+                    <line x1="12" y1="3" x2="12" y2="15"/>
+                  </svg>
+                  <div class="main-text">Drop a new image, or click to choose</div>
+                  <div class="hint">JPG, PNG, or WebP · max 5 MB · HEIC not supported</div>
+                  <input type="file" data-file="${slot.key}" accept="image/jpeg,image/png,image/webp" />
+                </label>
+                ${isCustom ? `<button class="btn-admin btn-admin-secondary btn-admin-small" data-reset="${slot.key}" style="margin-top:0.75rem;">Reset to default</button>` : ''}
+              </div>
+            </div>
+          </div>`;
+      }).join('');
+
+      container.querySelectorAll('input[data-file]').forEach(inp => {
+        inp.addEventListener('change', (e) => upload(inp.dataset.file, e.target.files[0]));
+      });
+      container.querySelectorAll('label[data-dz]').forEach(dz => {
+        dz.addEventListener('dragover', (e) => { e.preventDefault(); dz.classList.add('dragover'); });
+        dz.addEventListener('dragleave', () => dz.classList.remove('dragover'));
+        dz.addEventListener('drop', (e) => {
+          e.preventDefault();
+          dz.classList.remove('dragover');
+          upload(dz.dataset.dz, e.dataTransfer.files[0]);
+        });
+      });
+      container.querySelectorAll('button[data-reset]').forEach(btn => {
+        btn.addEventListener('click', () => resetSlot(btn.dataset.reset));
+      });
+    }
+
+    async function upload(key, file) {
+      if (!file) return;
+      const slot = SLOTS.find(s => s.key === key);
+      try {
+        window.Admin.toast('Uploading…', 'info');
+        const url = await window.Admin.uploadImage(file, 'gallery');
+        const { error } = await sb.from('site_images').upsert({ key, image_url: url });
+        if (error) throw error;
+        await window.Admin.logAction('site_images', key, current[key] ? 'update' : 'create',
+          current[key] ? { key, image_url: current[key] } : null, { key, image_url: url });
+        current[key] = url;
+        window.Admin.toast(`${slot.title} updated!`, 'success');
+        render();
+      } catch (err) {
+        window.Admin.toast('Upload failed: ' + err.message, 'error');
+      }
+    }
+
+    async function resetSlot(key) {
+      const slot = SLOTS.find(s => s.key === key);
+      const ok = await window.Admin.confirm(`Reset ${slot.title} back to the original default image?`, 'Reset image');
+      if (!ok) return;
+      const { error } = await sb.from('site_images').delete().eq('key', key);
+      if (error) { window.Admin.toast('Reset failed: ' + error.message, 'error'); return; }
+      await window.Admin.logAction('site_images', key, 'delete', { key, image_url: current[key] }, null);
+      delete current[key];
+      window.Admin.toast(`${slot.title} reset to default.`, 'success');
+      render();
+    }
+
+    load();
+  })();
+  </script>
+</body>
+</html>

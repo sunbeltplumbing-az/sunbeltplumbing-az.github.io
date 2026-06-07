@@ -141,14 +141,110 @@
       }
     }
 
-    // ===== Site Settings (phone, email, etc. — optional v2 feature) =====
-    // Currently public pages use hardcoded contact info. When settings editing
-    // matters more, we can wire this to update header/footer dynamically.
+    // ===== Site Settings (phone, email, ROC#, tagline, etc.) =====
+    // Public pages ship with hardcoded defaults (so they work even if Supabase
+    // is down). When the admin changes Business Info, we swap those defaults for
+    // the live values on every page load.
+    try {
+      const { data: s } = await sb
+        .from('site_settings').select('*').eq('id', 'main').maybeSingle();
+      if (s) applySiteSettings(s);
+    } catch (e) { /* keep hardcoded defaults */ }
+
+    // ===== Site Images (logo, hero background, page-header background) =====
+    try {
+      const { data: imgs } = await sb
+        .from('site_images').select('key, image_url');
+      if (imgs && imgs.length) applySiteImages(imgs);
+    } catch (e) { /* table may not exist yet — keep static images */ }
 
   } catch (err) {
     console.warn('[content-loader] Using static content:', err.message);
   }
 })();
+
+// ----- Apply editable Business Info to the page -----
+// The keys below are the ORIGINAL hardcoded defaults shipped in the HTML.
+// We find those exact strings in visible text and links and replace them.
+const SITE_DEFAULTS = {
+  phone: '(480) 527-5385',
+  email: 'shan@sunbeltplumbingaz.com',
+  facebook_url: 'https://fb.com/SunbeltPlumbingLLC',
+  business_hours: '24-hour service',
+  service_area_text: 'Arizona City & Casa Grande · Phoenix to Tucson',
+  emergency_tagline: "We handle the pressure so you don't have to.",
+  roc_number: '344103'
+};
+
+function applySiteSettings(s) {
+  // --- Links: phone, email, facebook ---
+  if (s.phone) {
+    const digits = String(s.phone).replace(/[^\d]/g, '');
+    const tel = digits.length === 10 ? '+1' + digits : '+' + digits;
+    document.querySelectorAll('a[href^="tel:"]').forEach(a => { a.href = 'tel:' + tel; });
+  }
+  if (s.email) {
+    document.querySelectorAll('a[href^="mailto:"]').forEach(a => { a.href = 'mailto:' + s.email; });
+  }
+  if (s.facebook_url) {
+    document.querySelectorAll('a[href*="fb.com"], a[href*="facebook.com"]').forEach(a => { a.href = s.facebook_url; });
+  }
+
+  // --- Visible text: replace each changed default string wherever it appears ---
+  const replacements = [];
+  const addRepl = (field) => {
+    const def = SITE_DEFAULTS[field];
+    const val = s[field];
+    if (def && val && val !== def) replacements.push([def, String(val)]);
+  };
+  ['phone', 'email', 'facebook_url', 'business_hours', 'service_area_text', 'emergency_tagline'].forEach(addRepl);
+  // ROC number appears as "ROC #344103" — match just the number
+  if (s.roc_number && s.roc_number !== SITE_DEFAULTS.roc_number) {
+    replacements.push([SITE_DEFAULTS.roc_number, String(s.roc_number)]);
+  }
+
+  if (replacements.length) {
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode(node) {
+        const p = node.parentNode;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        const tag = p.nodeName;
+        if (tag === 'SCRIPT' || tag === 'STYLE') return NodeFilter.FILTER_REJECT;
+        return node.nodeValue.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    for (const node of nodes) {
+      let text = node.nodeValue;
+      for (const [from, to] of replacements) {
+        if (text.includes(from)) text = text.split(from).join(to);
+      }
+      if (text !== node.nodeValue) node.nodeValue = text;
+    }
+  }
+}
+
+// ----- Apply editable Site Images to the page -----
+function applySiteImages(rows) {
+  const map = {};
+  for (const r of rows) { if (r.image_url) map[r.key] = r.image_url; }
+
+  if (map.logo) {
+    document.querySelectorAll('.logo-nav, .footer-logo img, .logo img').forEach(img => { img.src = map.logo; });
+  }
+  if (map.hero_bg) {
+    document.documentElement.style.setProperty('--hero-bg', `url('${cssUrl(map.hero_bg)}')`);
+  }
+  if (map.page_header_bg) {
+    document.documentElement.style.setProperty('--page-bg', `url('${cssUrl(map.page_header_bg)}')`);
+  }
+}
+
+function cssUrl(u) {
+  // Escape characters that would break a CSS url('...') value
+  return String(u).replace(/['"\\]/g, '\\$&').replace(/\n/g, '');
+}
 
 function escapeHtml(str) {
   if (str == null) return '';

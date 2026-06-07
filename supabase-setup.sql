@@ -109,6 +109,14 @@ CREATE TABLE IF NOT EXISTS site_settings (
 );
 
 
+-- Site images (logo, hero background, page-header background — key/value)
+CREATE TABLE IF NOT EXISTS site_images (
+  key text PRIMARY KEY,            -- e.g. 'logo', 'hero_bg', 'page_header_bg'
+  image_url text NOT NULL,
+  updated_at timestamptz DEFAULT now()
+);
+
+
 -- Audit log (tracks every admin change for troubleshooting)
 CREATE TABLE IF NOT EXISTS audit_log (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -138,7 +146,7 @@ $$;
 DO $$
 DECLARE t text;
 BEGIN
-  FOREACH t IN ARRAY ARRAY['gallery','testimonials','services','prices','site_settings']
+  FOREACH t IN ARRAY ARRAY['gallery','testimonials','services','prices','site_settings','site_images']
   LOOP
     EXECUTE format('DROP TRIGGER IF EXISTS set_%s_updated_at ON %I;', t, t);
     EXECUTE format('CREATE TRIGGER set_%s_updated_at BEFORE UPDATE ON %I FOR EACH ROW EXECUTE FUNCTION set_updated_at();', t, t);
@@ -160,6 +168,7 @@ ALTER TABLE services       ENABLE ROW LEVEL SECURITY;
 ALTER TABLE prices         ENABLE ROW LEVEL SECURITY;
 ALTER TABLE service_areas  ENABLE ROW LEVEL SECURITY;
 ALTER TABLE site_settings  ENABLE ROW LEVEL SECURITY;
+ALTER TABLE site_images    ENABLE ROW LEVEL SECURITY;
 ALTER TABLE audit_log      ENABLE ROW LEVEL SECURITY;
 
 
@@ -168,7 +177,7 @@ DO $$
 DECLARE p RECORD;
 BEGIN
   FOR p IN SELECT schemaname, tablename, policyname FROM pg_policies
-    WHERE schemaname='public' AND tablename IN ('gallery','testimonials','services','prices','service_areas','site_settings','audit_log')
+    WHERE schemaname='public' AND tablename IN ('gallery','testimonials','services','prices','service_areas','site_settings','site_images','audit_log')
   LOOP
     EXECUTE format('DROP POLICY IF EXISTS %I ON %I.%I;', p.policyname, p.schemaname, p.tablename);
   END LOOP;
@@ -182,18 +191,56 @@ CREATE POLICY "public read active services"     ON services      FOR SELECT TO a
 CREATE POLICY "public read active prices"       ON prices        FOR SELECT TO anon, authenticated USING (is_active = true);
 CREATE POLICY "public read active areas"        ON service_areas FOR SELECT TO anon, authenticated USING (is_active = true);
 CREATE POLICY "public read settings"            ON site_settings FOR SELECT TO anon, authenticated USING (true);
+CREATE POLICY "public read site images"         ON site_images   FOR SELECT TO anon, authenticated USING (true);
 
--- Authenticated full CRUD
-CREATE POLICY "authenticated manage gallery"      ON gallery       FOR ALL TO authenticated USING (true) WITH CHECK (true);
-CREATE POLICY "authenticated manage testimonials" ON testimonials  FOR ALL TO authenticated USING (true) WITH CHECK (true);
-CREATE POLICY "authenticated manage services"     ON services      FOR ALL TO authenticated USING (true) WITH CHECK (true);
-CREATE POLICY "authenticated manage prices"       ON prices        FOR ALL TO authenticated USING (true) WITH CHECK (true);
-CREATE POLICY "authenticated manage areas"        ON service_areas FOR ALL TO authenticated USING (true) WITH CHECK (true);
-CREATE POLICY "authenticated manage settings"     ON site_settings FOR ALL TO authenticated USING (true) WITH CHECK (true);
+-- ------------------------------------------------------------
+-- 3b. ADMIN ALLOWLIST — only approved emails can write
+-- ------------------------------------------------------------
+-- Previously ANY authenticated user could edit everything. Now writes
+-- require the logged-in email to be present in the admin_emails table.
+--
+-- ⚠️ IMPORTANT: add the REAL email(s) you log in with BELOW before relying on
+--    this, or you will lock yourself out of editing. The seeded address is a
+--    placeholder. To add/remove admins later, edit the admin_emails table in
+--    the Supabase Table Editor (it is not editable from the public site).
+CREATE TABLE IF NOT EXISTS admin_emails (
+  email text PRIMARY KEY,
+  added_at timestamptz DEFAULT now()
+);
 
--- Audit log: authenticated read + write only, not public
-CREATE POLICY "authenticated read audit"  ON audit_log FOR SELECT TO authenticated USING (true);
-CREATE POLICY "authenticated write audit" ON audit_log FOR INSERT TO authenticated WITH CHECK (true);
+-- Seed the documented business email. ADD YOUR ACTUAL LOGIN EMAIL HERE TOO:
+INSERT INTO admin_emails (email) VALUES
+  ('sunbeltplumbingaz@gmail.com'),
+  ('shan@sunbeltplumbingaz.com')
+ON CONFLICT (email) DO NOTHING;
+
+-- RLS on the allowlist itself: enabled with NO anon/authenticated policies,
+-- so it is only manageable via the Supabase dashboard / service role.
+ALTER TABLE admin_emails ENABLE ROW LEVEL SECURITY;
+
+-- Helper used by every write policy. SECURITY DEFINER lets it read
+-- admin_emails past that table's RLS. Case-insensitive match.
+CREATE OR REPLACE FUNCTION public.is_admin()
+RETURNS boolean
+LANGUAGE sql STABLE SECURITY DEFINER SET search_path = public AS $$
+  SELECT EXISTS (
+    SELECT 1 FROM admin_emails
+    WHERE lower(email) = lower(coalesce(auth.jwt() ->> 'email', ''))
+  );
+$$;
+
+-- Authenticated full CRUD — gated to allowlisted admins
+CREATE POLICY "admin manage gallery"      ON gallery       FOR ALL TO authenticated USING (is_admin()) WITH CHECK (is_admin());
+CREATE POLICY "admin manage testimonials" ON testimonials  FOR ALL TO authenticated USING (is_admin()) WITH CHECK (is_admin());
+CREATE POLICY "admin manage services"     ON services      FOR ALL TO authenticated USING (is_admin()) WITH CHECK (is_admin());
+CREATE POLICY "admin manage prices"       ON prices        FOR ALL TO authenticated USING (is_admin()) WITH CHECK (is_admin());
+CREATE POLICY "admin manage areas"        ON service_areas FOR ALL TO authenticated USING (is_admin()) WITH CHECK (is_admin());
+CREATE POLICY "admin manage settings"     ON site_settings FOR ALL TO authenticated USING (is_admin()) WITH CHECK (is_admin());
+CREATE POLICY "admin manage site images"  ON site_images   FOR ALL TO authenticated USING (is_admin()) WITH CHECK (is_admin());
+
+-- Audit log: allowlisted admins read + write only, not public
+CREATE POLICY "admin read audit"  ON audit_log FOR SELECT TO authenticated USING (is_admin());
+CREATE POLICY "admin write audit" ON audit_log FOR INSERT TO authenticated WITH CHECK (is_admin());
 
 
 -- ------------------------------------------------------------
@@ -311,13 +358,13 @@ ON CONFLICT DO NOTHING;
 -- 2. New Policy → "For full customization"
 -- 3. Paste:
 --
---    CREATE POLICY "authenticated upload" ON storage.objects
+--    CREATE POLICY "admin upload" ON storage.objects
 --      FOR INSERT TO authenticated
---      WITH CHECK (bucket_id = 'gallery');
+--      WITH CHECK (bucket_id = 'gallery' AND public.is_admin());
 --
---    CREATE POLICY "authenticated delete" ON storage.objects
+--    CREATE POLICY "admin delete" ON storage.objects
 --      FOR DELETE TO authenticated
---      USING (bucket_id = 'gallery');
+--      USING (bucket_id = 'gallery' AND public.is_admin());
 --
 -- Public SELECT is automatic when bucket is marked public.
 -- ============================================================

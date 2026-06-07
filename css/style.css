@@ -1695,7 +1695,7 @@ section { padding: var(--space-3xl) 0; }
   content: '';
   position: absolute;
   inset: 0;
-  background: url('/images/bg_pipes.jpg') center/cover no-repeat;
+  background: var(--hero-bg, url('/images/bg_pipes.jpg')) center/cover no-repeat;
   opacity: 0.15;
   z-index: 0;
   pointer-events: none;

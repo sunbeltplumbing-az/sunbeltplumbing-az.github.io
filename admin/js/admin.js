@@ -11,6 +11,16 @@
 window.Admin = {
   user: null,
 
+  // ----- Is this email allowed into the admin? -----
+  isAllowed(email) {
+    const list = window.ADMIN_ALLOWLIST;
+    // If no allowlist is configured, don't block (fall back to old behavior).
+    if (!Array.isArray(list) || list.length === 0) return true;
+    if (!email) return false;
+    const e = email.trim().toLowerCase();
+    return list.some(a => String(a).trim().toLowerCase() === e);
+  },
+
   // ----- Auth guard: call on every protected page -----
   async requireAuth() {
     const sb = await window.supabaseReady();
@@ -18,6 +28,13 @@ window.Admin = {
 
     if (error || !session) {
       window.location.href = '/admin/';
+      return null;
+    }
+
+    // Reject signed-in users who aren't on the admin allowlist.
+    if (!this.isAllowed(session.user.email)) {
+      await sb.auth.signOut();
+      window.location.href = '/admin/?denied=1';
       return null;
     }
 

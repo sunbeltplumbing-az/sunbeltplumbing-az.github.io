@@ -21,6 +21,20 @@ window.SUPABASE_CONFIG = {
   anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh0cnlkc3hqcnRvYnh1aHhocmZ5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5NzgyMTMsImV4cCI6MjA5MjU1NDIxM30.ZW53A3LVM_jyadtEuIXcB6GaKvR0Ufwzc60wc6biOPk'
 };
 
+// ============================================
+// ADMIN ALLOWLIST — who is allowed into /admin/
+// ============================================
+// Only these emails can use the admin panel. This is a convenience guard for a
+// friendly "you're not authorized" message; the REAL enforcement lives in the
+// Supabase database (the admin_emails table + Row Level Security in
+// supabase-setup.sql). Keep the two lists in sync.
+//
+// ⚠️ Add the exact email(s) you log in with. Comparison is case-insensitive.
+window.ADMIN_ALLOWLIST = [
+  'sunbeltplumbingaz@gmail.com',
+  'shan@sunbeltplumbingaz.com'
+];
+
 // Load Supabase JS from CDN and initialize client
 (function() {
   const script = document.createElement('script');

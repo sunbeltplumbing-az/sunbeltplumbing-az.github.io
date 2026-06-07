@@ -68,18 +68,35 @@
   (async function() {
     const sb = await window.supabaseReady();
 
-    // If already logged in, skip straight to dashboard
-    const { data: { session } } = await sb.auth.getSession();
-    if (session) {
-      window.location.href = '/admin/dashboard.html';
-      return;
+    const alertBoxEl = document.getElementById('alert-box');
+    function denyMessage() {
+      alertBoxEl.innerHTML = `<div class="alert alert-error">This email isn't authorized to use the admin panel. If you believe this is a mistake, contact your developer.</div>`;
     }
 
-    // Also auto-redirect when the magic link resolves the session
-    sb.auth.onAuthStateChange((event, session) => {
-      if (event === 'SIGNED_IN' && session) {
+    // Sign out + show message for a signed-in but non-allowlisted user.
+    async function handleSession(session) {
+      if (!session) return false;
+      if (window.Admin.isAllowed(session.user.email)) {
         window.location.href = '/admin/dashboard.html';
+        return true;
       }
+      await sb.auth.signOut();
+      denyMessage();
+      return false;
+    }
+
+    // Show the "not authorized" note if we were bounced here from a guard.
+    if (new URLSearchParams(window.location.search).get('denied') === '1') {
+      denyMessage();
+    }
+
+    // If already logged in (and allowed), skip straight to dashboard
+    const { data: { session } } = await sb.auth.getSession();
+    await handleSession(session);
+
+    // Also handle the case where the magic link resolves the session
+    sb.auth.onAuthStateChange((event, session) => {
+      if (event === 'SIGNED_IN' && session) handleSession(session);
     });
 
     const emailInput = document.getElementById('email');

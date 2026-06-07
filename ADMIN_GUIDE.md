@@ -65,6 +65,23 @@ Click the red **×** button. You'll be asked to confirm. After confirming, the p
 
 ---
 
+## Replacing your logo & background photos
+
+The **Gallery** is for photos of your jobs. The **Site Images** page is for the big, site-wide pictures: your **logo** and the faint **background photos** behind page titles.
+
+1. Click **Site Images** in the left menu
+2. You'll see a card for each: **Logo**, **Homepage hero background**, and **Page header background**
+3. Drag a new image onto the box (or click to choose) — it uploads and goes live right away
+4. Changed your mind? Click **Reset to default** to go back to the original image
+
+Same photo rules as the gallery apply (JPG/PNG/WebP, max 5 MB, no HEIC). For the logo, a wide PNG with a transparent background looks best.
+
+### Updating service photos
+
+On the **Services** page, click **Edit** on any service. You'll now see a drag-and-drop box to upload a new photo for that service card (or you can still paste an image path). Don't forget to click **Save service**.
+
+---
+
 ## Adding testimonials (customer reviews)
 
 Real customer reviews are gold for your website. Every time someone leaves a nice Google, Facebook, or text-message review, add it here.
