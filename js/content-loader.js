@@ -54,17 +54,21 @@
         .eq('is_active', true).eq('is_featured_on_home', true)
         .order('display_order', { ascending: true });
       if (!error && data && data.length > 0) {
-        servicesGrid.innerHTML = data.map(s => `
-          <div class="service-card service-card-image">
-            ${s.image_url ? `<div class="service-card-img" style="background-image:url('${escapeAttr(s.image_url)}');" aria-hidden="true"></div>` : ''}
-            <div class="service-card-body">
-              <div class="service-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h2m14 0h2M5.6 5.6l1.4 1.4m10 10l1.4 1.4M12 3v2m0 14v2M5.6 18.4l1.4-1.4m10-10l1.4-1.4"/><circle cx="12" cy="12" r="4"/></svg>
+        const ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h2m14 0h2M5.6 5.6l1.4 1.4m10 10l1.4 1.4M12 3v2m0 14v2M5.6 18.4l1.4-1.4m10-10l1.4-1.4"/><circle cx="12" cy="12" r="4"/></svg>`;
+        servicesGrid.innerHTML = data.map(s => s.image_url
+          ? `<div class="service-card service-card-image">
+              <div class="service-card-img" style="background-image:url('${escapeAttr(s.image_url)}');" aria-hidden="true"></div>
+              <div class="service-card-body">
+                <div class="service-icon">${ICON}</div>
+                <h3>${escapeHtml(s.title)}</h3>
+                <p>${escapeHtml(s.description || '')}</p>
               </div>
+            </div>`
+          : `<div class="service-card">
+              <div class="service-icon">${ICON}</div>
               <h3>${escapeHtml(s.title)}</h3>
               <p>${escapeHtml(s.description || '')}</p>
-            </div>
-          </div>`).join('');
+            </div>`).join('');
       }
     }
 
